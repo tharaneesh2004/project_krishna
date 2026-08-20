@@ -1,0 +1,144 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 1.5rem 0;
+  transition: all 0.4s ease;
+  color: var(--color-white);
+}
+
+.navbar.scrolled {
+  background-color: rgba(20, 20, 20, 0.95);
+  padding: 1rem 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+.nav-links a {
+  position: relative;
+  padding-bottom: 4px;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 1px;
+  background-color: var(--color-gold);
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%;
+}
+
+.nav-logo {
+  text-align: center;
+  flex: 1;
+}
+
+.nav-logo h1 {
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  letter-spacing: 2px;
+  color: var(--color-gold);
+  margin-bottom: 0.2rem;
+}
+
+.nav-logo p {
+  font-size: 0.6rem;
+  letter-spacing: 3px;
+  color: var(--color-white);
+  text-transform: uppercase;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.nav-icons {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.nav-icons a {
+  display: flex;
+  align-items: center;
+  transition: color 0.3s ease;
+}
+
+.nav-icons a:hover {
+  color: var(--color-gold);
+}
+
+.cart-icon {
+  position: relative;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background-color: var(--color-gold);
+  color: #fff;
+  font-size: 0.6rem;
+  font-weight: bold;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-mobile-toggle {
+  display: none;
+  cursor: pointer;
+}
+
+@media (max-width: 992px) {
+  .nav-links.left {
+    display: none;
+  }
+  
+  .nav-mobile-toggle {
+    display: block;
+  }
+  
+  .hidden-mobile {
+    display: none;
+  }
+  
+  .nav-right {
+    gap: 1rem;
+  }
+  
+  .navbar-container {
+    padding: 0 1.5rem;
+  }
+}

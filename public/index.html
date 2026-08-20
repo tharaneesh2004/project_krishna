@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Krishna | Heritage Collection</title>
+  <meta name="description" content="Krishna Heritage Collection - Exquisite handwoven sarees crafted for every moment, every memory. Explore our curated collections of Silk, Kanchipuram, Bridal and Festive sarees.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <button class="nav-hamburger" id="hamburgerBtn" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <div class="nav-left" style="display: flex; align-items: center;">
+        <div class="nav-logo">
+          <a href="#home">
+            <img src="/images/logo.png" alt="Krishna Heritage Collection" style="height: 95px; object-fit: contain; display: block; margin-right: 2.5rem; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));">
+          </a>
+        </div>
+        <div class="nav-links-left">
+          <a href="#home" class="nav-link active">HOME</a>
+          <a href="#sarees" class="nav-link">SAREES</a>
+          <a href="#collections" class="nav-link">COLLECTIONS</a>
+        </div>
+      </div>
+
+      <div class="nav-right">
+        <div class="nav-links-right">
+          <a href="#about" class="nav-link">ABOUT</a>
+          <a href="#contact" class="nav-link">CONTACT</a>
+        </div>
+        <div class="nav-icons">
+          <a href="#search" class="nav-icon" aria-label="Search">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </a>
+          <a href="#account" class="nav-icon" aria-label="Account">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </a>
+          <a href="#cart" class="nav-icon cart-icon" aria-label="Cart">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            <span class="cart-badge">0</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#home" class="mobile-link">HOME</a>
+      <a href="#sarees" class="mobile-link">SAREES</a>
+      <a href="#collections" class="mobile-link">COLLECTIONS</a>
+      <a href="#about" class="mobile-link">ABOUT</a>
+      <a href="#contact" class="mobile-link">CONTACT</a>
+    </div>
+  </nav>
+
+  <!-- ========== HERO SECTION ========== -->
+  <section class="hero" id="home">
+    <div class="hero-image">
+      <img src="/images/hero_bg.jpg" alt="Elegant woman in traditional silk saree">
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="hero-ornament">
+          <svg width="80" height="24" viewBox="0 0 80 24" fill="none">
+            <path d="M0 12 Q10 2 20 12 Q30 22 40 12 Q50 2 60 12 Q70 22 80 12" stroke="#b8935a" stroke-width="1.5" fill="none"/>
+            <circle cx="40" cy="12" r="3" fill="#b8935a"/>
+          </svg>
+        </div>
+        <h2 class="hero-title">
+          Timeless Drapes.<br>
+          <em>Modern Grace.</em>
+        </h2>
+        <p class="hero-subtitle">
+          Exquisite sarees crafted for every<br>
+          moment, every memory.
+        </p>
+        <div class="hero-buttons">
+          <a href="#collections" class="btn btn-gold">EXPLORE COLLECTION</a>
+          <a href="#new" class="btn btn-outline-white">VIEW NEW ARRIVALS</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== COLLECTIONS SECTION ========== -->
+  <section class="collections" id="collections">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">OUR COLLECTIONS</span>
+        <h2 class="section-title">Draped in Heritage. Woven with Love.</h2>
+      </div>
+      <div class="collections-grid">
+        <!-- Silk Sarees -->
+        <div class="collection-card">
+          <div class="collection-img" style="background: linear-gradient(160deg, #c9a84c 0%, #8b6914 40%, #d4a843 70%, #6b5010 100%);">
+            <div class="collection-img-inner">
+              <svg viewBox="0 0 160 220" fill="none" class="saree-illustration">
+                <ellipse cx="80" cy="60" rx="35" ry="40" fill="rgba(0,0,0,0.15)"/>
+                <path d="M55 90 Q80 180 105 90" stroke="rgba(255,255,255,0.3)" stroke-width="1" fill="none"/>
+                <path d="M50 100 L60 200 Q80 210 100 200 L110 100" stroke="rgba(255,255,255,0.2)" fill="rgba(255,255,255,0.05)"/>
+                <line x1="65" y1="120" x2="95" y2="120" stroke="rgba(255,255,255,0.15)"/>
+                <line x1="68" y1="140" x2="92" y2="140" stroke="rgba(255,255,255,0.15)"/>
+                <line x1="70" y1="160" x2="90" y2="160" stroke="rgba(255,255,255,0.15)"/>
+              </svg>
+            </div>
+          </div>
+          <div class="collection-info">
+            <div class="card-ornament">
+              <svg width="28" height="10" viewBox="0 0 28 10" fill="none"><path d="M0 5 Q7 0 14 5 Q21 10 28 5" stroke="#b8935a" stroke-width="1"/></svg>
+            </div>
+            <h3>SILK SAREES</h3>
+            <p>Luxurious. Elegant. Eternal.</p>
+            <a href="#" class="card-link">EXPLORE &gt;</a>
+          </div>
+        </div>
+
+        <!-- Kanchipuram -->
+        <div class="collection-card">
+          <div class="collection-img" style="background: linear-gradient(160deg, #8b1a1a 0%, #a0342b 40%, #cd3333 70%, #6b1010 100%);">
+            <div class="collection-img-inner">
+              <svg viewBox="0 0 160 220" fill="none" class="saree-illustration">
+                <ellipse cx="80" cy="60" rx="35" ry="40" fill="rgba(0,0,0,0.15)"/>
+                <path d="M55 90 Q80 180 105 90" stroke="rgba(255,255,255,0.3)" stroke-width="1" fill="none"/>
+                <path d="M50 100 L60 200 Q80 210 100 200 L110 100" stroke="rgba(255,255,255,0.2)" fill="rgba(255,255,255,0.05)"/>
+                <line x1="65" y1="120" x2="95" y2="120" stroke="rgba(255,255,255,0.15)"/>
+                <line x1="68" y1="140" x2="92" y2="140" stroke="rgba(255,255,255,0.15)"/>
+                <line x1="70" y1="160" x2="90" y2="160" stroke="rgba(255,255,255,0.15)"/>
+              </svg>
+            </div>
+          </div>
+          <div class="collection-info">
+            <div class="card-ornament">
+              <svg width="28" height="10" viewBox="0 0 28 10" fill="none"><path d="M0 5 Q7 0 14 5 Q21 10 28 5" stroke="#b8935a" stroke-width="1"/></svg>
+            </div>
+            <h3>KANCHIPURAM<br>COLLECTION</h3>
+            <p>Tradition that never fades.</p>
+            <a href="#" class="card-link">EXPLORE &gt;</a>
+          </div>
+        </div>
+
+        <!-- Bridal Edit -->
+        <div class="collection-card">
+          <div class="collection-img" style="background: linear-gradient(160deg, #722f37 0%, #9b2335 40%, #c41e3a 70%, #5a1020 100%);">
+            <div class="collection-img-inner">
+              <svg viewBox="0 0 160 220" fill="none" class="saree-illustration">
+                <ellipse cx="80" cy="60" rx="35" ry="40" fill="rgba(0,0,0,0.15)"/>
+                <path d="M55 90 Q80 180 105 90" stroke="rgba(255,255,255,0.3)" stroke-width="1" fill="none"/>
+                <path d="M50 100 L60 200 Q80 210 100 200 L110 100" stroke="rgba(255,255,255,0.2)" fill="rgba(255,255,255,0.05)"/>
+                <line x1="65" y1="120" x2="95" y2="120" stroke="rgba(255,255,255,0.15)"/>
+                <line x1="68" y1="140" x2="92" y2="140" stroke="rgba(255,255,255,0.15)"/>
+                <line x1="70" y1="160" x2="90" y2="160" stroke="rgba(255,255,255,0.15)"/>
+              </svg>
+            </div>
+          </div>
+          <div class="collection-info">
+            <div class="card-ornament">
+              <svg width="28" height="10" viewBox="0 0 28 10" fill="none"><path d="M0 5 Q7 0 14 5 Q21 10 28 5" stroke="#b8935a" stroke-width="1"/></svg>
+            </div>
+            <h3>BRIDAL EDIT</h3>
+            <p>For your most precious day.</p>
+            <a href="#" class="card-link">EXPLORE &gt;</a>
+          </div>
+        </div>
+
+        <!-- Festive -->
+        <div class="collection-card">
+          <div class="collection-img" style="background: linear-gradient(160deg, #1b4d3e 0%, #2e6b50 40%, #2e8b57 70%, #0f3028 100%);">
+            <div class="collection-img-inner">
+              <svg viewBox="0 0 160 220" fill="none" class="saree-illustration">
+                <ellipse cx="80" cy="60" rx="35" ry="40" fill="rgba(0,0,0,0.15)"/>
+                <path d="M55 90 Q80 180 105 90" stroke="rgba(255,255,255,0.3)" stroke-width="1" fill="none"/>
+                <path d="M50 100 L60 200 Q80 210 100 200 L110 100" stroke="rgba(255,255,255,0.2)" fill="rgba(255,255,255,0.05)"/>
+                <line x1="65" y1="120" x2="95" y2="120" stroke="rgba(255,255,255,0.15)"/>
+                <line x1="68" y1="140" x2="92" y2="140" stroke="rgba(255,255,255,0.15)"/>
+                <line x1="70" y1="160" x2="90" y2="160" stroke="rgba(255,255,255,0.15)"/>
+              </svg>
+            </div>
+          </div>
+          <div class="collection-info">
+            <div class="card-ornament">
+              <svg width="28" height="10" viewBox="0 0 28 10" fill="none"><path d="M0 5 Q7 0 14 5 Q21 10 28 5" stroke="#b8935a" stroke-width="1"/></svg>
+            </div>
+            <h3>FESTIVE COLLECTION</h3>
+            <p>Celebrate in timeless style.</p>
+            <a href="#" class="card-link">EXPLORE &gt;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FEATURES SECTION ========== -->
+  <section class="features">
+    <div class="container">
+      <div class="features-grid">
+        <div class="feature-item">
+          <div class="feature-icon">
+            <svg width="50" height="50" viewBox="0 0 50 50" fill="none" stroke="#b8935a" stroke-width="1.2">
+              <path d="M25 5 L35 10 L35 20 L25 25 L15 20 L15 10 Z"/>
+              <path d="M25 25 L35 30 L35 40 L25 45 L15 40 L15 30 Z"/>
+              <line x1="25" y1="5" x2="25" y2="25"/>
+              <path d="M20 15 Q25 12 30 15"/>
+              <path d="M20 35 Q25 32 30 35"/>
+            </svg>
+          </div>
+          <h3>HANDWOVEN & AUTHENTIC</h3>
+          <p>Crafted by skilled artisans with generations of expertise.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">
+            <svg width="50" height="50" viewBox="0 0 50 50" fill="none" stroke="#b8935a" stroke-width="1.2">
+              <rect x="5" y="10" width="17" height="30" rx="2"/>
+              <rect x="28" y="6" width="17" height="34" rx="2"/>
+              <path d="M9 15h9 M9 19h9 M9 23h9"/>
+              <path d="M32 11h9 M32 15h9 M32 19h9"/>
+              <circle cx="13.5" cy="33" r="2.5" fill="#b8935a"/>
+              <circle cx="36.5" cy="33" r="2.5" fill="#b8935a"/>
+            </svg>
+          </div>
+          <h3>CURATED COLLECTIONS</h3>
+          <p>Thoughtfully curated Sarees for every occasion and personality.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">
+            <svg width="50" height="50" viewBox="0 0 50 50" fill="none" stroke="#b8935a" stroke-width="1.2">
+              <rect x="8" y="18" width="34" height="24" rx="3"/>
+              <path d="M14 18V13a4 4 0 0 1 4-4h14a4 4 0 0 1 4 4v5"/>
+              <circle cx="25" cy="30" r="5"/>
+              <path d="M18 30h-5 M32 30h5"/>
+              <circle cx="25" cy="30" r="2" fill="#b8935a"/>
+            </svg>
+          </div>
+          <h3>PAN-INDIA DELIVERY</h3>
+          <p>Delivered with care, securely to your doorstep.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">
+            <svg width="50" height="50" viewBox="0 0 50 50" fill="none" stroke="#b8935a" stroke-width="1.2">
+              <rect x="10" y="10" width="30" height="30" rx="3"/>
+              <rect x="15" y="15" width="20" height="20" rx="1.5"/>
+              <path d="M21 6v6 M29 6v6"/>
+              <path d="M18 38v6 M32 38v6"/>
+              <path d="M22 22 L25 28 L30 20" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <h3>LUXURY GIFT PACKAGING</h3>
+          <p>Every saree comes in our signature luxury packaging.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== STORY SECTION ========== -->
+  <section class="story" id="about">
+    <div class="story-bg">
+      <div class="story-left-decor"></div>
+    </div>
+    <div class="story-content">
+      <div class="story-left-text">
+        <h2 class="story-left-main">KRISHNA</h2>
+        <h3 class="story-left-mid">HERITAGE COLLECTION</h3>
+        <p class="story-left-sub">SAREE &bull; TRADITION &bull; ELEGANCE</p>
+      </div>
+      <div class="story-text-block">
+        <p class="story-lead">More than a saree,</p>
+        <h2 class="story-title"><em>it's an emotion.</em></h2>
+        <p class="story-desc">At Krishna, we celebrate the six yards of grace that connect tradition with today.</p>
+        <a href="#" class="btn btn-gold">DISCOVER THE STORY</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CONTACT SECTION ========== -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">GET IN TOUCH</span>
+        <h2 class="section-title">We'd Love to Hear From You</h2>
+      </div>
+      <div class="contact-wrapper">
+        <div class="contact-info">
+          <h3>Visit Our Boutique</h3>
+          <p>123 Heritage Lane, Silk District<br>New Delhi, 110001, India</p>
+          <h3>Contact Us</h3>
+          <p>Email: hello@krishnaheritage.com<br>Phone: +91 98765 43210</p>
+          <h3>Opening Hours</h3>
+          <p>Mon - Sat: 10:00 AM - 8:00 PM<br>Sun: 11:00 AM - 6:00 PM</p>
+        </div>
+        <form class="contact-form" onsubmit="event.preventDefault(); alert('Thank you for reaching out! We will get back to you soon.');">
+          <input type="text" placeholder="Your Name" required>
+          <input type="email" placeholder="Your Email" required>
+          <textarea placeholder="Your Message" rows="5" required></textarea>
+          <button type="submit" class="btn btn-gold">SEND MESSAGE</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#home">
+            <img src="/images/logo.png" alt="Krishna Heritage Collection" style="height: 80px; object-fit: contain; margin-bottom: 1rem;">
+          </a>
+          <p class="footer-desc">Celebrating the art of Indian weaving, one saree at a time.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <a href="#">Home</a>
+          <a href="#">Sarees</a>
+          <a href="#">Collections</a>
+          <a href="#">About Us</a>
+        </div>
+        <div class="footer-col">
+          <h4>Customer Care</h4>
+          <a href="#">Contact Us</a>
+          <a href="#">Shipping Info</a>
+          <a href="#">Returns & Exchange</a>
+          <a href="#">FAQs</a>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <a href="#">Instagram</a>
+          <a href="#">Facebook</a>
+          <a href="#">Pinterest</a>
+          <a href="#">WhatsApp</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Krishna. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== MODALS ========== -->
+  <!-- Search Modal -->
+  <div class="modal" id="searchModal">
+    <div class="modal-overlay" onclick="closeModal('searchModal')"></div>
+    <div class="modal-content search-modal-content">
+      <button class="close-btn" onclick="closeModal('searchModal')">&times;</button>
+      <h2>What are you looking for?</h2>
+      <div class="search-box">
+        <input type="text" placeholder="Search sarees, collections...">
+        <button class="btn btn-gold">SEARCH</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cart Modal -->
+  <div class="modal cart-modal" id="cartModal">
+    <div class="modal-overlay" onclick="closeModal('cartModal')"></div>
+    <div class="modal-content side-panel">
+      <button class="close-btn" onclick="closeModal('cartModal')">&times;</button>
+      <h2>Your Cart</h2>
+      <div class="cart-empty">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <p>Your shopping cart is currently empty.</p>
+        <button class="btn btn-gold" onclick="closeModal('cartModal'); window.location.href='#collections'">CONTINUE SHOPPING</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Account Modal -->
+  <div class="modal" id="accountModal">
+    <div class="modal-overlay" onclick="closeModal('accountModal')"></div>
+    <div class="modal-content auth-modal">
+      <button class="close-btn" onclick="closeModal('accountModal')">&times;</button>
+      <h2>Welcome Back</h2>
+      <form onsubmit="event.preventDefault(); alert('Login successful!'); closeModal('accountModal');">
+        <input type="email" placeholder="Email Address" required>
+        <input type="password" placeholder="Password" required>
+        <button type="submit" class="btn btn-gold" style="width: 100%;">LOGIN</button>
+      </form>
+      <p class="auth-switch">Don't have an account? <a href="#">Sign up</a></p>
+    </div>
+  </div>
+
+  <script>
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // Mobile menu toggle
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburgerBtn.addEventListener('click', () => {
+      hamburgerBtn.classList.toggle('active');
+      mobileMenu.classList.toggle('active');
+    });
+
+    // Close mobile menu on link click
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburgerBtn.classList.remove('active');
+        mobileMenu.classList.remove('active');
+      });
+    });
+
+    // Scroll animations
+    const animateOnScroll = () => {
+      const elements = document.querySelectorAll('.collection-card, .feature-item, .story-text-block, .contact-wrapper');
+      elements.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.85) {
+          el.classList.add('visible');
+        }
+      });
+    };
+    window.addEventListener('scroll', animateOnScroll);
+    window.addEventListener('load', animateOnScroll);
+
+    // Modal Logic
+    function openModal(modalId) {
+      document.getElementById(modalId).classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(modalId) {
+      document.getElementById(modalId).classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Attach Modal events to Nav Icons
+    document.querySelector('a[href="#search"]').addEventListener('click', (e) => { e.preventDefault(); openModal('searchModal'); });
+    document.querySelector('a[href="#account"]').addEventListener('click', (e) => { e.preventDefault(); openModal('accountModal'); });
+    document.querySelector('a[href="#cart"]').addEventListener('click', (e) => { e.preventDefault(); openModal('cartModal'); });
+  </script>
+</body>
+</html>

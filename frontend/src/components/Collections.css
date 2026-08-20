@@ -1,0 +1,132 @@
+.collections {
+  padding: var(--spacing-xl) 0;
+  background-color: var(--color-white);
+}
+
+.collections-header {
+  text-align: center;
+  margin-bottom: var(--spacing-lg);
+}
+
+.section-label {
+  display: inline-block;
+  font-size: 0.8rem;
+  letter-spacing: 3px;
+  color: var(--color-gold);
+  font-weight: 500;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  color: var(--color-text-dark);
+  font-weight: 500;
+}
+
+.collections-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.collection-card {
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.4s ease;
+}
+
+.collection-card:hover {
+  transform: translateY(-8px);
+}
+
+.collection-image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  transition: box-shadow 0.4s ease;
+}
+
+.collection-card:hover .collection-image {
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+}
+
+.collection-image-pattern {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.collection-image-pattern svg {
+  width: 100%;
+  height: 100%;
+}
+
+.collection-card:hover .collection-image-pattern {
+  opacity: 1;
+}
+
+.collection-info {
+  padding: 1.5rem 0.5rem 0;
+}
+
+.collection-ornament {
+  margin-bottom: 0.75rem;
+  display: flex;
+  justify-content: center;
+}
+
+.collection-info h3 {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  color: var(--color-text-dark);
+}
+
+.collection-info p {
+  font-size: 0.85rem;
+  color: var(--color-text-light);
+  margin-bottom: 1rem;
+}
+
+.collection-link {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: var(--color-text-dark);
+  transition: color 0.3s ease;
+}
+
+.collection-link:hover {
+  color: var(--color-gold);
+}
+
+@media (max-width: 992px) {
+  .collections-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .collections-grid {
+    grid-template-columns: 1fr;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .section-title {
+    font-size: 1.7rem;
+  }
+}
