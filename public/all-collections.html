@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Krishna | All Collections</title>
+  <meta name="description" content="Explore our complete collection of exquisite handwoven sarees. Silk, Kanchipuram, Bridal, Festive and more.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-container">
+      <button class="nav-hamburger" id="hamburgerBtn" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <div class="nav-left" style="display: flex; align-items: center;">
+        <div class="nav-logo">
+          <a href="/">
+            <img src="/images/logo.png" alt="Krishna Heritage Collection" style="height: 95px; object-fit: contain; display: block; margin-right: 2.5rem; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));">
+          </a>
+        </div>
+        <div class="nav-links-left">
+          <a href="/" class="nav-link">HOME</a>
+          <a href="/all-collections.html" class="nav-link active">COLLECTIONS</a>
+        </div>
+      </div>
+
+      <div class="nav-right">
+        <div class="nav-links-right">
+          <a href="/#about" class="nav-link">ABOUT</a>
+          <a href="/#contact" class="nav-link">CONTACT</a>
+        </div>
+        <div class="nav-icons">
+          <a href="#search" class="nav-icon" aria-label="Search" onclick="event.preventDefault(); openModal('searchModal')">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </a>
+          <a href="#account" class="nav-icon" aria-label="Account" onclick="event.preventDefault(); openModal('accountModal')">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </a>
+          <a href="#cart" class="nav-icon cart-icon" aria-label="Cart" onclick="event.preventDefault(); openModal('cartModal')">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            <span class="cart-badge">0</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="/" class="mobile-link">HOME</a>
+      <a href="/all-collections.html" class="mobile-link">COLLECTIONS</a>
+      <a href="/#about" class="mobile-link">ABOUT</a>
+      <a href="/#contact" class="mobile-link">CONTACT</a>
+    </div>
+  </nav>
+
+  <!-- ========== COLLECTIONS SECTION ========== -->
+  <section class="collections" id="collections" style="padding-top: 10rem;">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">OUR COLLECTIONS</span>
+        <h2 class="section-title">Timeless Weaves, Every Thread a Story.</h2>
+        <p style="text-align: center; color: #666; margin-top: 1rem; margin-bottom: 3rem;">Explore our handpicked collection of exquisite sarees, woven with heritage and crafted with love.</p>
+      </div>
+
+      <div class="filters-container">
+        <div class="filters-left">
+          <select class="filter-select" id="filterCategory">
+            <option value="">All Sarees</option>
+          </select>
+          <select class="filter-select" id="filterMaterial">
+            <option value="">All Materials</option>
+          </select>
+          <select class="filter-select" id="filterType">
+            <option value="">All Types</option>
+          </select>
+          <select class="filter-select" id="filterPrice">
+            <option value="">All Price Ranges</option>
+            <option value="0-1000">Under ₹1,000</option>
+            <option value="1000-2000">₹1,000 - ₹2,000</option>
+            <option value="2000-5000">₹2,000 - ₹5,000</option>
+            <option value="5000+">Above ₹5,000</option>
+          </select>
+        </div>
+        <div class="filters-right">
+          <span style="font-size: 0.85rem; color: #666; margin-right: 8px;">Sort by:</span>
+          <select class="filter-select" id="sortBy">
+            <option value="featured">Featured</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="newest">Newest First</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="sarees-grid" id="sareesGrid">
+        <div class="sarees-loading" id="sareesLoading">
+          <p>Loading sarees...</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/">
+            <img src="/images/logo.png" alt="Krishna Heritage Collection" style="height: 80px; object-fit: contain; margin-bottom: 1rem;">
+          </a>
+          <p class="footer-desc">Celebrating the art of Indian weaving, one saree at a time.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <a href="/">Home</a>
+          <a href="/all-collections.html">Collections</a>
+          <a href="/#about">About Us</a>
+        </div>
+        <div class="footer-col">
+          <h4>Customer Care</h4>
+          <a href="#">Contact Us</a>
+          <a href="#">Shipping Info</a>
+          <a href="#">Returns & Exchange</a>
+          <a href="#">FAQs</a>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <a href="#">Instagram</a>
+          <a href="#">Facebook</a>
+          <a href="#">Pinterest</a>
+          <a href="#">WhatsApp</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Krishna. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== MODALS ========== -->
+  <!-- Search Modal -->
+  <div class="modal" id="searchModal">
+    <div class="modal-overlay" onclick="closeModal('searchModal')"></div>
+    <div class="modal-content search-modal-content">
+      <button class="close-btn" onclick="closeModal('searchModal')">&times;</button>
+      <h2>What are you looking for?</h2>
+      <div class="search-box">
+        <input type="text" placeholder="Search sarees, collections...">
+        <button class="btn btn-gold">SEARCH</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cart Modal -->
+  <div class="modal cart-modal" id="cartModal">
+    <div class="modal-overlay" onclick="closeModal('cartModal')"></div>
+    <div class="modal-content side-panel">
+      <button class="close-btn" onclick="closeModal('cartModal')">&times;</button>
+      <h2>Your Cart</h2>
+      <div class="cart-empty">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <p>Your shopping cart is currently empty.</p>
+        <button class="btn btn-gold" onclick="closeModal('cartModal'); window.location.href='/all-collections.html'">CONTINUE SHOPPING</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Account Modal -->
+  <div class="modal" id="accountModal">
+    <div class="modal-overlay" onclick="closeModal('accountModal')"></div>
+    <div class="modal-content auth-modal">
+      <button class="close-btn" onclick="closeModal('accountModal')">&times;</button>
+      <div class="auth-brand-header">
+        <h2 class="auth-brand-name">KRISHNA</h2>
+        <p class="auth-brand-tagline">HERITAGE</p>
+        <div class="auth-brand-divider">
+          <span></span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b8935a" stroke-width="1.5"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+          <span></span>
+        </div>
+      </div>
+      
+      <form id="publicLoginForm" class="auth-branded-form">
+        <div class="auth-form-group">
+          <label>Email Address</label>
+          <input type="email" id="loginEmail" placeholder="" required>
+        </div>
+        <div class="auth-form-group">
+          <label>Password</label>
+          <div class="password-wrapper">
+            <input type="password" id="loginPassword" placeholder="" required style="width: 100%;">
+          </div>
+        </div>
+        
+        <div class="auth-remember">
+          <input type="checkbox" id="rememberMe">
+          <label for="rememberMe">Remember me</label>
+        </div>
+
+        <button type="submit" id="loginSubmitBtn" class="btn btn-gold" style="width: 100%; margin-top: 10px;">LOGIN TO DASHBOARD</button>
+      </form>
+      <div style="text-align: center; margin-top: 20px;">
+        <p class="auth-switch">Don't have an account? <a href="/signup.html">Sign up</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Custom Alert Modal for Buy Now -->
+  <div class="modal custom-alert-modal" id="buyNowAlertModal">
+    <div class="modal-overlay" onclick="closeModal('buyNowAlertModal')"></div>
+    <div class="modal-content text-center" style="max-width: 400px; padding: 3rem 2rem;">
+      <button class="close-btn" onclick="closeModal('buyNowAlertModal')">&times;</button>
+      <div style="margin-bottom: 1.5rem;">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#b8935a" stroke-width="1.5">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="8" x2="12" y2="12"></line>
+          <line x1="12" y1="16" x2="12.01" y2="16"></line>
+        </svg>
+      </div>
+      <h3 style="font-family: 'Cinzel', serif; font-size: 1.5rem; color: #2c2117; margin-bottom: 1rem; line-height: 1.3;">
+        Please sign up or log in first to proceed with your purchase.
+      </h3>
+      <p style="font-family: 'Inter', sans-serif; font-size: 0.9rem; color: #666; margin-bottom: 2rem;">
+        Join Krishna Heritage Collection to explore and purchase our timeless sarees.
+      </p>
+      <button class="btn btn-gold" style="width: 100%; margin-bottom: 10px;" onclick="window.location.href='/signup.html'">SIGN UP NOW</button>
+      <button class="btn btn-outline-gold" style="width: 100%; background: transparent; border: 1px solid #b8935a; color: #b8935a; padding: 12px; border-radius: 4px; font-weight: 500; cursor: pointer; transition: 0.3s;" onmouseover="this.style.background='#fdfbf7'" onmouseout="this.style.background='transparent'" onclick="closeModal('buyNowAlertModal'); openModal('accountModal')">LOGIN</button>
+    </div>
+  </div>
+
+  <script>
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', true); // Always scrolled on this page
+    });
+
+    // Mobile menu toggle
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburgerBtn.addEventListener('click', () => {
+      hamburgerBtn.classList.toggle('active');
+      mobileMenu.classList.toggle('active');
+    });
+
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburgerBtn.classList.remove('active');
+        mobileMenu.classList.remove('active');
+      });
+    });
+
+    // Modal Logic
+    function openModal(modalId) {
+      document.getElementById(modalId).classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(modalId) {
+      document.getElementById(modalId).classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // ========== ALL PRODUCTS LOADING ==========
+    let allProducts = [];
+
+    async function loadAllSarees() {
+      const grid = document.getElementById('sareesGrid');
+      const loader = document.getElementById('sareesLoading');
+
+      try {
+        const response = await fetch('/api/products');
+        allProducts = await response.json();
+
+        if (!allProducts || allProducts.length === 0) {
+          loader.innerHTML = '<p style="color:#7a6a58;">Our curated collection is coming soon. Stay tuned!</p>';
+          return;
+        }
+
+        // Populate filter dropdowns dynamically
+        populateFilters(allProducts);
+
+        // Render all products
+        renderProducts(allProducts);
+
+      } catch (err) {
+        console.error('Failed to load sarees:', err);
+        if (loader) loader.innerHTML = '<p style="color:#7a6a58;">Could not load sarees at this time.</p>';
+      }
+    }
+
+    function populateFilters(products) {
+      const materials = [...new Set(products.map(p => p.material).filter(Boolean))];
+      const types = [...new Set(products.map(p => p.type).filter(Boolean))];
+      const categories = [...new Set(products.map(p => p.category).filter(Boolean))];
+
+      const filterMaterial = document.getElementById('filterMaterial');
+      materials.forEach(m => {
+        const opt = document.createElement('option');
+        opt.value = m;
+        opt.textContent = m;
+        filterMaterial.appendChild(opt);
+      });
+
+      const filterType = document.getElementById('filterType');
+      types.forEach(t => {
+        const opt = document.createElement('option');
+        opt.value = t;
+        opt.textContent = t;
+        filterType.appendChild(opt);
+      });
+
+      const filterCategory = document.getElementById('filterCategory');
+      categories.forEach(c => {
+        const opt = document.createElement('option');
+        opt.value = c;
+        opt.textContent = c;
+        filterCategory.appendChild(opt);
+      });
+    }
+
+    function applyFilters() {
+      const category = document.getElementById('filterCategory').value;
+      const material = document.getElementById('filterMaterial').value;
+      const type = document.getElementById('filterType').value;
+      const priceRange = document.getElementById('filterPrice').value;
+      const sortBy = document.getElementById('sortBy').value;
+
+      let filtered = [...allProducts];
+
+      if (category) filtered = filtered.filter(p => p.category === category);
+      if (material) filtered = filtered.filter(p => p.material === material);
+      if (type) filtered = filtered.filter(p => p.type === type);
+
+      if (priceRange) {
+        if (priceRange === '5000+') {
+          filtered = filtered.filter(p => (p.discountedPrice || p.originalPrice || 0) >= 5000);
+        } else {
+          const [min, max] = priceRange.split('-').map(Number);
+          filtered = filtered.filter(p => {
+            const price = p.discountedPrice || p.originalPrice || 0;
+            return price >= min && price <= max;
+          });
+        }
+      }
+
+      // Sort
+      if (sortBy === 'price-low') {
+        filtered.sort((a, b) => (a.discountedPrice || 0) - (b.discountedPrice || 0));
+      } else if (sortBy === 'price-high') {
+        filtered.sort((a, b) => (b.discountedPrice || 0) - (a.discountedPrice || 0));
+      } else if (sortBy === 'newest') {
+        filtered.sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0));
+      }
+
+      renderProducts(filtered);
+    }
+
+    // Attach filter event listeners
+    document.querySelectorAll('.filter-select').forEach(select => {
+      select.addEventListener('change', applyFilters);
+    });
+
+    function renderProducts(products) {
+      const grid = document.getElementById('sareesGrid');
+      grid.innerHTML = '';
+
+      if (products.length === 0) {
+        grid.innerHTML = '<p style="text-align: center; color: #7a6a58; padding: 3rem; grid-column: 1/-1;">No sarees found matching your filters.</p>';
+        return;
+      }
+
+      const formatPrice = (val) => {
+        return new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(val || 0);
+      };
+
+      products.forEach(product => {
+        const card = document.createElement('div');
+        card.className = 'saree-card';
+
+        const mainImgSrc = product.primaryImage || (product.images && product.images.length > 0 ? product.images[0] : '/images/hero_bg.jpg');
+        const allImages = product.images && product.images.length > 0 ? product.images : (product.primaryImage ? [product.primaryImage] : ['/images/hero_bg.jpg']);
+        const variants = product.colorVariants || [];
+        const cardId = 'saree-' + product._id;
+
+        card.innerHTML = `
+          <div class="saree-card-image" id="${cardId}">
+            <div class="saree-wishlist" onclick="event.stopPropagation(); this.classList.toggle('active')">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+              </svg>
+            </div>
+            <img src="${mainImgSrc}" alt="${product.name}" id="${cardId}-main" data-images='${JSON.stringify(allImages)}' data-current-index="0" />
+            ${allImages.length > 1 ? `
+              <div class="image-nav prev" onclick="prevImage(event, '${cardId}-main')">❮</div>
+              <div class="image-nav next" onclick="nextImage(event, '${cardId}-main')">❯</div>
+            ` : ''}
+            ${product.discountPercentage > 0 ? `<span class="saree-discount-badge">${product.discountPercentage}% OFF</span>` : ''}
+          </div>
+          ${variants.length > 0 ? `
+            <div class="saree-color-variants">
+              <div class="variant-thumb active" data-img="${mainImgSrc}" data-target="${cardId}-main">
+                <img src="${mainImgSrc}" alt="Main" />
+              </div>
+              ${variants.map(v => `
+                <div class="variant-thumb" data-img="${v.imageUrl}" data-target="${cardId}-main">
+                  <img src="${v.imageUrl}" alt="${v.colorName}" />
+                  <span class="variant-tooltip">${v.colorName}</span>
+                </div>
+              `).join('')}
+            </div>
+          ` : ''}
+          <div class="saree-card-details">
+            <h3 class="saree-card-name">${product.name}</h3>
+            <div class="saree-card-attrs">
+              ${product.material ? `<div class="saree-attr"><span class="attr-icon">🪷</span><span class="attr-label">Material</span><span class="attr-value">${product.material}</span></div>` : ''}
+              ${product.size ? `<div class="saree-attr"><span class="attr-icon">🪷</span><span class="attr-label">Size</span><span class="attr-value">${product.size}</span></div>` : ''}
+              ${product.fabric ? `<div class="saree-attr"><span class="attr-icon">🪷</span><span class="attr-label">Fabric</span><span class="attr-value">${product.fabric}</span></div>` : ''}
+              ${product.type ? `<div class="saree-attr"><span class="attr-icon">🪷</span><span class="attr-label">Type</span><span class="attr-value">${product.type}</span></div>` : ''}
+              ${product.pallu ? `<div class="saree-attr"><span class="attr-icon">🪷</span><span class="attr-label">Pallu</span><span class="attr-value">${product.pallu}</span></div>` : ''}
+              ${product.weight ? `<div class="saree-attr"><span class="attr-icon">🪷</span><span class="attr-label">Weight</span><span class="attr-value">${product.weight}</span></div>` : ''}
+            </div>
+            <div class="saree-card-price">
+              <span class="saree-price-final">${formatPrice(product.discountedPrice)}</span>
+              ${product.discountPercentage > 0 ? `<span class="saree-price-original">${formatPrice(product.originalPrice)}</span>` : ''}
+            </div>
+            <div class="saree-card-actions">
+              <button class="btn-saree-action btn-add-cart" onclick="event.stopPropagation(); openModal('cartModal')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                ADD TO CART
+              </button>
+              <button class="btn-saree-action btn-buy-now" onclick="event.stopPropagation(); handleBuyNow()">
+                BUY NOW
+              </button>
+            </div>
+          </div>
+        `;
+
+        grid.appendChild(card);
+      });
+
+      // Color Variant Click Handler
+      document.querySelectorAll('.variant-thumb').forEach(thumb => {
+        thumb.addEventListener('click', function() {
+          const targetImg = document.getElementById(this.dataset.target);
+          const newSrc = this.dataset.img;
+          if (targetImg && newSrc) {
+            targetImg.style.opacity = '0';
+            setTimeout(() => {
+              targetImg.src = newSrc;
+              targetImg.style.opacity = '1';
+            }, 200);
+          }
+          this.parentElement.querySelectorAll('.variant-thumb').forEach(t => t.classList.remove('active'));
+          this.classList.add('active');
+        });
+      });
+    }
+
+    // Image Slider Functions
+    window.nextImage = function(e, imgId) {
+      if (e) e.stopPropagation();
+      const img = document.getElementById(imgId);
+      if (!img) return;
+      const images = JSON.parse(img.dataset.images || '[]');
+      if (images.length <= 1) return;
+      let currentIndex = parseInt(img.dataset.currentIndex || '0');
+      currentIndex = (currentIndex + 1) % images.length;
+      img.style.opacity = '0';
+      setTimeout(() => {
+        img.src = images[currentIndex];
+        img.dataset.currentIndex = currentIndex;
+        img.style.opacity = '1';
+      }, 200);
+    };
+
+    window.prevImage = function(e, imgId) {
+      if (e) e.stopPropagation();
+      const img = document.getElementById(imgId);
+      if (!img) return;
+      const images = JSON.parse(img.dataset.images || '[]');
+      if (images.length <= 1) return;
+      let currentIndex = parseInt(img.dataset.currentIndex || '0');
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      img.style.opacity = '0';
+      setTimeout(() => {
+        img.src = images[currentIndex];
+        img.dataset.currentIndex = currentIndex;
+        img.style.opacity = '1';
+      }, 200);
+    };
+
+    // Handle Login Form
+    document.getElementById('publicLoginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('loginEmail').value;
+      const password = document.getElementById('loginPassword').value;
+      const btn = document.getElementById('loginSubmitBtn');
+      btn.innerText = 'AUTHENTICATING...';
+      btn.disabled = true;
+      try {
+        // Authenticate as customer
+        const response = await fetch('/api/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          // Set token for the customer
+          localStorage.setItem('userToken', data.token);
+          localStorage.setItem('userName', data.user.name);
+          localStorage.setItem('userEmail', data.user.email);
+          window.location.href = '/dashboard.html';
+        } else {
+          btn.innerText = 'LOGIN';
+          btn.disabled = false;
+          alert(data.message || 'Invalid credentials. Please check your email and password.');
+        }
+      } catch (err) {
+        btn.innerText = 'LOGIN';
+        btn.disabled = false;
+        alert('An error occurred. Please try again.');
+      }
+    });
+
+    // Handle Buy Now Click
+    function handleBuyNow() {
+      // Check if user is logged in (using a simple localStorage check for this example)
+      const userToken = localStorage.getItem('userToken');
+      if (!userToken) {
+        openModal('buyNowAlertModal');
+      } else {
+        window.location.href = '#checkout';
+      }
+    }
+
+    loadAllSarees();
+  </script>
+</body>
+</html>

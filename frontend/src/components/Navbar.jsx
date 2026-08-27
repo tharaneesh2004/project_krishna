@@ -29,7 +29,7 @@ const Navbar = () => {
         <div className={`nav-links left ${mobileMenuOpen ? 'active' : ''}`}>
           <a href="#home" className="active">HOME</a>
           <a href="#sarees">SAREES</a>
-          <a href="#collections">COLLECTIONS</a>
+          <a href="/collections/all">COLLECTIONS</a>
         </div>
 
         {/* Logo */}

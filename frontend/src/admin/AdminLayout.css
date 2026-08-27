@@ -1,0 +1,105 @@
+:root {
+  --admin-bg: #FAFAF8;
+  --admin-card-bg: #FFFFFF;
+  --admin-text-primary: #2d2d2d;
+  --admin-text-secondary: #7a6a58;
+  --admin-accent-gold: #C49A4A;
+  --admin-border: rgba(196, 154, 74, 0.15);
+  --admin-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+}
+
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--admin-bg);
+  color: var(--admin-text-primary);
+  font-family: var(--font-body);
+}
+
+.admin-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  transition: all 0.3s ease;
+}
+
+.admin-content {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+  background-color: transparent;
+}
+
+/* Base Dashboard Styling reused across admin pages */
+.admin-page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.admin-page-title {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  color: var(--admin-text-primary);
+  font-weight: 500;
+}
+
+.admin-card {
+  background-color: var(--admin-card-bg);
+  border: 1px solid var(--admin-border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: var(--admin-shadow);
+}
+
+.admin-btn-primary {
+  background-color: var(--admin-accent-gold);
+  color: #FFFFFF;
+  border: none;
+  padding: 10px 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 2px 8px rgba(196, 154, 74, 0.2);
+}
+
+.admin-btn-primary:hover {
+  background-color: #b38b3f;
+  transform: translateY(-1px);
+}
+
+.admin-btn-secondary {
+  background-color: transparent;
+  color: var(--admin-accent-gold);
+  border: 1px solid var(--admin-accent-gold);
+  padding: 10px 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.admin-btn-secondary:hover {
+  background-color: rgba(196, 154, 74, 0.05);
+}
+
+@media (max-width: 768px) {
+  .admin-content {
+    padding: 1rem;
+  }
+}

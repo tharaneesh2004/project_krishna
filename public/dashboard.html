@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Krishna | My Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ========== VARIABLES & RESET ========== */
+    :root {
+      --bg-color: #fcfbf9;
+      --surface-color: #ffffff;
+      --text-main: #2c2117;
+      --text-muted: #757575;
+      --brand-dark: #1c1511; 
+      --brand-gold: #b8935a;
+      --border-color: #eee9e0;
+      --danger-color: #d32f2f;
+      --success-bg: #e8f5e9;
+      --success-text: #2e7d32;
+      --info-bg: #e3f2fd;
+      --info-text: #1976d2;
+      --warning-bg: #fff3e0;
+      --warning-text: #e65100;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background-color: var(--bg-color); color: var(--text-main); font-size: 14px; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    button { cursor: pointer; border: none; background: none; font-family: 'Inter', sans-serif; }
+
+    /* ========== TOP ANNOUNCEMENT BAR ========== */
+    .top-bar { background-color: var(--brand-dark); color: #fff; display: flex; justify-content: center; align-items: center; padding: 8px 20px; font-size: 12px; font-weight: 300; letter-spacing: 0.5px; gap: 20px; }
+    .top-bar-item { display: flex; align-items: center; gap: 8px; }
+    .top-bar-separator { color: #555; }
+
+    /* ========== HEADER NAVIGATION ========== */
+    .header { background: var(--surface-color); padding: 10px 40px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 100; }
+    .header-logo img { height: 70px; object-fit: contain; }
+    .header-nav { display: flex; gap: 30px; font-size: 13px; font-weight: 500; letter-spacing: 1px; color: var(--text-main); }
+    .header-nav a { position: relative; padding: 10px 0; transition: 0.2s; }
+    .header-nav a:hover { color: var(--brand-gold); }
+    .header-icons { display: flex; align-items: center; gap: 20px; color: var(--text-main); }
+    .icon-btn { position: relative; background: none; border: none; cursor: pointer; color: inherit; }
+    .icon-badge { position: absolute; top: -6px; right: -6px; background: var(--brand-gold); color: #fff; font-size: 10px; font-weight: bold; width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    .profile-btn { background: var(--brand-dark); color: #fff; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+
+    /* ========== DASHBOARD LAYOUT ========== */
+    .layout { display: flex; max-width: 1440px; margin: 30px auto; padding: 0 40px; gap: 30px; }
+    
+    /* ========== SIDEBAR ========== */
+    .sidebar { width: 260px; flex-shrink: 0; display: flex; flex-direction: column; gap: 20px; }
+    
+    /* Profile Card */
+    .profile-card { background: var(--brand-dark); color: #fff; border-radius: 12px; padding: 25px 20px; display: flex; align-items: center; gap: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+    .profile-avatar { width: 56px; height: 56px; background: #fff; color: var(--brand-dark); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Cinzel', serif; font-size: 24px; font-weight: 600; flex-shrink: 0; }
+    .profile-info { flex: 1; }
+    .profile-name { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 600; margin-bottom: 2px; }
+    .profile-greeting { font-size: 11px; color: rgba(255,255,255,0.7); margin-bottom: 6px; }
+    .profile-badge { display: inline-flex; align-items: center; gap: 4px; font-size: 10px; color: var(--brand-gold); background: rgba(184, 147, 90, 0.15); padding: 3px 8px; border-radius: 20px; border: 1px solid rgba(184, 147, 90, 0.3); }
+    
+    /* Sidebar Navigation */
+    .sidebar-menu { display: flex; flex-direction: column; gap: 4px; }
+    .sidebar-link { display: flex; align-items: center; justify-content: space-between; padding: 12px 20px; color: var(--text-main); font-size: 14px; border-radius: 8px; transition: 0.2s; font-weight: 500; }
+    .sidebar-link-left { display: flex; align-items: center; gap: 12px; }
+    .sidebar-link svg { width: 18px; height: 18px; stroke: currentColor; stroke-width: 1.5; fill: none; color: var(--text-muted); transition: 0.2s; }
+    .sidebar-link:hover { background: #f0ebe0; }
+    .sidebar-link.active { background: var(--brand-dark); color: #fff; }
+    .sidebar-link.active svg { color: #fff; }
+    .sidebar-bubble { background: #f0ebe0; color: var(--brand-gold); font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 12px; }
+    
+    .sidebar-divider { height: 1px; background: var(--border-color); margin: 10px 0; }
+    
+    /* Bottom Actions */
+    .sidebar-action-btn { display: flex; align-items: center; gap: 10px; width: 100%; padding: 12px 20px; border-radius: 8px; border: 1px solid var(--border-color); font-size: 13px; font-weight: 500; transition: 0.2s; background: var(--surface-color); }
+    .sidebar-action-btn:hover { border-color: var(--brand-gold); }
+    .sidebar-action-btn svg { width: 16px; height: 16px; stroke: currentColor; stroke-width: 1.5; fill: none; }
+    .btn-signout { color: var(--danger-color); border-color: rgba(211, 47, 47, 0.2); }
+    .btn-signout:hover { background: rgba(211, 47, 47, 0.05); border-color: rgba(211, 47, 47, 0.3); }
+
+    /* ========== MAIN CONTENT ========== */
+    .main-area { flex: 1; min-width: 0; position: relative; }
+    
+    /* Watermark */
+    .mandala-watermark { position: absolute; top: -50px; right: -50px; width: 400px; height: 400px; opacity: 0.03; pointer-events: none; z-index: 0; background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="45" fill="none" stroke="%23000" stroke-width="0.5"/><path d="M50 5 L55 45 L95 50 L55 55 L50 95 L45 55 L5 50 L45 45 Z" fill="none" stroke="%23000" stroke-width="0.5"/></svg>') no-repeat center/contain; }
+
+    /* Header */
+    .dashboard-header { position: relative; z-index: 1; margin-bottom: 25px; }
+    .dashboard-title { font-family: 'Playfair Display', serif; font-size: 32px; color: var(--brand-dark); margin-bottom: 5px; }
+    .dashboard-subtitle { font-size: 13px; color: var(--text-muted); display: flex; align-items: center; gap: 10px; }
+    .title-squiggle { color: var(--brand-gold); font-family: serif; font-size: 20px; letter-spacing: 2px; }
+
+    /* Top Stats Row */
+    .stats-row { display: flex; gap: 15px; margin-bottom: 25px; position: relative; z-index: 1; }
+    .stat-card { flex: 1; background: var(--surface-color); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; display: flex; flex-direction: column; box-shadow: 0 4px 15px rgba(0,0,0,0.02); }
+    .stat-header { display: flex; gap: 15px; margin-bottom: 15px; }
+    .stat-icon { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--brand-gold); color: var(--brand-gold); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .stat-info { display: flex; flex-direction: column; }
+    .stat-label { font-size: 11px; color: var(--text-muted); margin-bottom: 2px; font-weight: 500; }
+    .stat-value { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--text-main); }
+    .stat-link { font-size: 11px; color: var(--text-main); font-weight: 500; display: flex; align-items: center; gap: 5px; margin-top: auto; }
+    .stat-link:hover { color: var(--brand-gold); }
+
+    /* Content Grid */
+    .content-grid { display: grid; grid-template-columns: 1fr 400px; gap: 25px; position: relative; z-index: 1; }
+    
+    /* Panels */
+    .panel { background: var(--surface-color); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.02); }
+    .panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .panel-title { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--text-main); font-weight: 600; }
+    .panel-link { font-size: 12px; color: var(--brand-gold); font-weight: 500; display: flex; align-items: center; gap: 5px; }
+    
+    /* Recent Orders List */
+    .order-list { display: flex; flex-direction: column; gap: 15px; }
+    .order-item { border: 1px solid var(--border-color); border-radius: 8px; padding: 15px; display: flex; align-items: center; gap: 15px; }
+    .order-img { width: 60px; height: 80px; object-fit: cover; border-radius: 4px; }
+    .order-details { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+    .order-title { font-size: 14px; font-weight: 600; color: var(--text-main); }
+    .order-meta { font-size: 11px; color: var(--text-muted); }
+    .order-price-qty { font-size: 13px; font-weight: 500; color: var(--text-main); margin-top: 4px; }
+    .order-status-col { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; width: 140px; }
+    .status-badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+    .status-badge::before { content: ''; display: inline-block; width: 6px; height: 6px; border-radius: 50%; }
+    .status-delivered { background: var(--success-bg); color: var(--success-text); }
+    .status-delivered::before { background: var(--success-text); }
+    .status-shipped { background: var(--info-bg); color: var(--info-text); }
+    .status-shipped::before { background: var(--info-text); }
+    .status-processing { background: var(--warning-bg); color: var(--warning-text); }
+    .status-processing::before { background: var(--warning-text); }
+    .btn-outline { border: 1px solid var(--border-color); background: var(--surface-color); padding: 8px 16px; border-radius: 6px; font-size: 11px; font-weight: 600; color: var(--text-main); transition: 0.2s; width: 100%; text-align: center; }
+    .btn-outline:hover { border-color: var(--brand-gold); color: var(--brand-gold); }
+
+    /* Recently Viewed */
+    .recently-viewed-list { display: flex; gap: 15px; overflow-x: auto; padding-bottom: 10px; scrollbar-width: none; }
+    .recently-viewed-list::-webkit-scrollbar { display: none; }
+    .product-card-mini { min-width: 120px; flex: 1; }
+    .product-img-wrap { position: relative; aspect-ratio: 3/4; border-radius: 8px; overflow: hidden; margin-bottom: 10px; }
+    .product-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    .product-fav { position: absolute; bottom: 8px; right: 8px; width: 24px; height: 24px; background: rgba(255,255,255,0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    .product-fav svg { width: 12px; height: 12px; stroke: var(--brand-gold); stroke-width: 2; fill: none; }
+    .product-title { font-size: 11px; color: var(--text-main); margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .product-price { font-size: 12px; font-weight: 600; color: var(--text-main); }
+
+    /* Quick Actions */
+    .quick-actions-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+    .quick-action-card { border: 1px solid var(--border-color); border-radius: 8px; padding: 15px 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; transition: 0.2s; text-align: center; cursor: pointer; }
+    .quick-action-card:hover { border-color: var(--brand-gold); box-shadow: 0 4px 12px rgba(184, 147, 90, 0.08); transform: translateY(-2px); }
+    .quick-action-card svg { width: 20px; height: 20px; stroke: var(--brand-gold); stroke-width: 1.5; fill: none; }
+    .quick-action-card span { font-size: 10px; font-weight: 500; color: var(--text-main); }
+
+    /* Promo Banner */
+    .promo-banner { background: var(--brand-dark); border-radius: 12px; padding: 25px; color: #fff; position: relative; overflow: hidden; }
+    .promo-content { position: relative; z-index: 2; max-width: 220px; }
+    .promo-title { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+    .promo-desc { font-size: 11px; color: rgba(255,255,255,0.8); line-height: 1.5; margin-bottom: 15px; }
+    .promo-highlight { color: var(--brand-gold); font-weight: 600; }
+    .btn-gold { background: var(--brand-gold); color: #fff; padding: 8px 20px; border-radius: 4px; font-size: 11px; font-weight: 600; transition: 0.2s; border: none; }
+    .btn-gold:hover { background: #9c7b46; }
+    .promo-art { position: absolute; right: 0; bottom: 0; width: 140px; height: 140px; z-index: 1; opacity: 0.6; pointer-events: none; background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M50 90 Q60 60 90 50 Q60 40 50 10 Q40 40 10 50 Q40 60 50 90 Z" fill="none" stroke="%23b8935a" stroke-width="1"/></svg>') no-repeat right bottom/contain; }
+
+    /* Order Journey */
+    .order-journey { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; position: relative; padding: 0 10px; }
+    .journey-line { position: absolute; top: 14px; left: 30px; right: 30px; height: 1px; background: var(--border-color); z-index: 0; }
+    .journey-step { display: flex; flex-direction: column; align-items: center; gap: 8px; position: relative; z-index: 1; }
+    .journey-icon { width: 28px; height: 28px; border-radius: 50%; background: #fff; border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; }
+    .journey-icon svg { width: 12px; height: 12px; stroke: var(--text-muted); stroke-width: 2; fill: none; }
+    .journey-step.active .journey-icon { border-color: var(--brand-dark); }
+    .journey-step.active .journey-icon svg { stroke: var(--brand-dark); }
+    .journey-step.completed .journey-icon { background: var(--brand-dark); border-color: var(--brand-dark); }
+    .journey-step.completed .journey-icon svg { stroke: #fff; }
+    .journey-label { font-size: 10px; font-weight: 500; color: var(--text-muted); }
+    .journey-step.active .journey-label, .journey-step.completed .journey-label { color: var(--text-main); font-weight: 600; }
+    .journey-footer { text-align: center; font-size: 11px; color: var(--text-muted); margin-top: 25px; }
+
+  </style>
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-bar">
+    <div class="top-bar-item">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand-gold)" stroke-width="2"><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+      Free Shipping on Orders Above ₹999
+    </div>
+    <span class="top-bar-separator">|</span>
+    <div class="top-bar-item">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand-gold)" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+      Exclusive New Collection – Shop Now
+    </div>
+  </div>
+
+  <!-- Header Navigation -->
+  <header class="header">
+    <div class="header-logo">
+      <a href="/" style="display: flex; align-items: center; gap: 8px; text-decoration: none;">
+        <img src="/images/krishna-logo-badge.png" alt="Krishna Heritage Collection" style="width: 45px; height: 45px;">
+        <div style="display: flex; flex-direction: column; justify-content: center; line-height: 1.1;">
+          <span style="font-family: 'Cinzel', serif; font-size: 20px; font-weight: 700; color: var(--brand-dark); letter-spacing: 1px;">KRISHNA</span>
+          <span style="font-family: 'Cinzel', serif; font-size: 11px; font-weight: 600; color: var(--brand-dark); letter-spacing: 1.5px; margin-top: 2px;">HERITAGE COLLECTION</span>
+          <span style="font-family: 'Inter', sans-serif; font-size: 8px; font-weight: 500; color: var(--brand-gold); letter-spacing: 2px; margin-top: 4px;">SAREE &bull; TRADITION &bull; ELEGANCE</span>
+        </div>
+      </a>
+    </div>
+    <nav class="header-nav">
+      <a href="/all-collections.html">NEW ARRIVALS</a>
+      <a href="/all-collections.html">SAREES ⏷</a>
+      <a href="/all-collections.html">COLLECTIONS ⏷</a>
+      <a href="/all-collections.html">SHOP BY ⏷</a>
+      <a href="/all-collections.html">OFFERS</a>
+    </nav>
+    <div class="header-icons">
+      <button class="icon-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button>
+      <button class="icon-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+        <span class="icon-badge">3</span>
+      </button>
+      <button class="icon-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+        <span class="icon-badge">2</span>
+      </button>
+      <button class="icon-btn profile-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Dashboard Layout -->
+  <div class="layout">
+    
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="profile-card">
+        <div class="profile-avatar" id="avatar-initial">U</div>
+        <div class="profile-info">
+          <div class="profile-name" id="user-name-display">User Name</div>
+          <div class="profile-greeting">Welcome back!</div>
+          <div class="profile-badge">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            Gold Member
+          </div>
+        </div>
+      </div>
+
+      <nav class="sidebar-menu">
+        <a href="#" class="sidebar-link active" onclick="switchTab('dashboard', this)">
+          <div class="sidebar-link-left">
+            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+            Dashboard
+          </div>
+        </a>
+        <a href="#" class="sidebar-link" onclick="switchTab('orders', this)">
+          <div class="sidebar-link-left">
+            <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+            My Orders
+          </div>
+        </a>
+        <a href="#" class="sidebar-link" onclick="switchTab('addresses', this)">
+          <div class="sidebar-link-left">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            My Addresses
+          </div>
+        </a>
+        <a href="#" class="sidebar-link" onclick="switchTab('wishlist', this)">
+          <div class="sidebar-link-left">
+            <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            Wishlist
+          </div>
+          <span class="sidebar-bubble">3</span>
+        </a>
+        <a href="#" class="sidebar-link">
+          <div class="sidebar-link-left">
+            <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+            Cart
+          </div>
+          <span class="sidebar-bubble">2</span>
+        </a>
+        <a href="#" class="sidebar-link">
+          <div class="sidebar-link-left">
+            <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            Profile Details
+          </div>
+        </a>
+        <a href="#" class="sidebar-link">
+          <div class="sidebar-link-left">
+            <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+            Payment Methods
+          </div>
+        </a>
+        <a href="#" class="sidebar-link">
+          <div class="sidebar-link-left">
+            <svg viewBox="0 0 24 24"><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h6"></path><path d="M21.5 2.5a2.121 2.121 0 0 1 0 3L12 15l-4 1 1-4 9.5-9.5a2.121 2.121 0 0 1 3 0z"></path></svg>
+            Offers & Coupons
+          </div>
+        </a>
+        <a href="#" class="sidebar-link">
+          <div class="sidebar-link-left">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+            Settings
+          </div>
+        </a>
+        <a href="#" class="sidebar-link">
+          <div class="sidebar-link-left">
+            <svg viewBox="0 0 24 24"><path d="M15.05 5A5 5 0 0 1 19 8.95M15.05 1A9 9 0 0 1 23 8.94m-1 7.98v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            Help & Support
+          </div>
+        </a>
+      </nav>
+
+      <div class="sidebar-divider"></div>
+
+      <a href="/all-collections.html" class="sidebar-action-btn" style="margin-bottom: 10px;">
+        <svg viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Continue Shopping
+      </a>
+      <button class="sidebar-action-btn btn-signout" onclick="logout()">
+        <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+        Sign Out
+      </button>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-area">
+      <div class="mandala-watermark"></div>
+      
+      <div id="tab-dashboard" class="tab-content" style="display:block;">
+      <div class="dashboard-header">
+        <h1 class="dashboard-title">My Dashboard</h1>
+        <div class="dashboard-subtitle">
+          <span class="title-squiggle">~</span>
+          Manage your orders, profile, addresses and more
+        </div>
+      </div>
+
+      <!-- Stats Row -->
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-header">
+            <div class="stat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg></div>
+            <div class="stat-info">
+              <span class="stat-label">Total Orders</span>
+              <span class="stat-value">12</span>
+            </div>
+          </div>
+          <a href="#" class="stat-link">View all orders <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+        </div>
+        
+        <div class="stat-card">
+          <div class="stat-header">
+            <div class="stat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg></div>
+            <div class="stat-info">
+              <span class="stat-label">Pending Orders</span>
+              <span class="stat-value">2</span>
+            </div>
+          </div>
+          <a href="#" class="stat-link">Track your orders <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-header">
+            <div class="stat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg></div>
+            <div class="stat-info">
+              <span class="stat-label">Saved Addresses</span>
+              <span class="stat-value">3</span>
+            </div>
+          </div>
+          <a href="#" class="stat-link">Manage addresses <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-header">
+            <div class="stat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></div>
+            <div class="stat-info">
+              <span class="stat-label">Wishlist Items</span>
+              <span class="stat-value">8</span>
+            </div>
+          </div>
+          <a href="#" class="stat-link">View wishlist <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-header">
+            <div class="stat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h6"></path><path d="M21.5 2.5a2.121 2.121 0 0 1 0 3L12 15l-4 1 1-4 9.5-9.5a2.121 2.121 0 0 1 3 0z"></path></svg></div>
+            <div class="stat-info">
+              <span class="stat-label">Coupons</span>
+              <span class="stat-value">5</span>
+            </div>
+          </div>
+          <a href="#" class="stat-link">View coupons <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+        </div>
+      </div>
+
+      <div class="content-grid">
+        <!-- Left Column -->
+        <div class="grid-left">
+          <!-- Recent Orders -->
+          <div class="panel">
+            <div class="panel-header">
+              <h2 class="panel-title">Recent Orders</h2>
+              <a href="#" class="panel-link" onclick="switchTab('orders', document.querySelectorAll('.sidebar-link')[1])">View All Orders <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+            </div>
+            
+            <div class="order-list" style="text-align: center; padding: 2rem 1rem;">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--border-color)" stroke-width="1.5" style="margin-bottom: 15px;"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+              <h4 style="font-family: 'Playfair Display', serif; color: var(--text-muted); font-size: 16px; margin-bottom: 5px;">No recent orders</h4>
+              <p style="font-size: 12px; color: var(--text-muted);">Looks like you haven't made your first purchase yet.</p>
+            </div>
+          </div>
+
+          <!-- Recently Viewed -->
+          <div class="panel">
+            <div class="panel-header" style="margin-bottom: 15px;">
+              <h2 class="panel-title">Recently Viewed</h2>
+            </div>
+            <div class="recently-viewed-list" style="padding: 2rem 1rem; text-align: center;">
+              <p style="font-size: 12px; color: var(--text-muted); margin: 0 auto;">No recently viewed items.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="grid-right">
+          <!-- Quick Actions -->
+          <div class="panel">
+            <div class="panel-header">
+              <h2 class="panel-title">Quick Actions</h2>
+            </div>
+            <div class="quick-actions-grid">
+              <div class="quick-action-card">
+                <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                <span>Track Order</span>
+              </div>
+              <div class="quick-action-card">
+                <svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+                <span>Return / Refund</span>
+              </div>
+              <div class="quick-action-card">
+                <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                <span>Download Invoices</span>
+              </div>
+              <div class="quick-action-card">
+                <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                <span>My Wishlist</span>
+              </div>
+              <div class="quick-action-card">
+                <svg viewBox="0 0 24 24"><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h6"></path><path d="M21.5 2.5a2.121 2.121 0 0 1 0 3L12 15l-4 1 1-4 9.5-9.5a2.121 2.121 0 0 1 3 0z"></path></svg>
+                <span>My Coupons</span>
+              </div>
+              <div class="quick-action-card">
+                <svg viewBox="0 0 24 24"><path d="M15.05 5A5 5 0 0 1 19 8.95M15.05 1A9 9 0 0 1 23 8.94m-1 7.98v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                <span>Help & Support</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Promo Banner -->
+          <div class="promo-banner">
+            <div class="promo-content">
+              <div class="promo-title">Exclusive for You</div>
+              <div class="promo-desc">You are a <span class="promo-highlight">Gold Member!</span><br>Enjoy free shipping, exclusive offers and early access to new collections.</div>
+              <button class="btn-gold" onclick="window.location.href='/all-collections.html'">Explore Offers</button>
+            </div>
+            <div class="promo-art"></div>
+          </div>
+
+          <!-- Order Journey Tracker -->
+          <div class="panel" style="margin-top: 25px;">
+            <div class="panel-header" style="margin-bottom: 25px;">
+              <h2 class="panel-title">Order Journey</h2>
+            </div>
+            <div class="order-journey">
+              <div class="journey-line"></div>
+              
+              <div class="journey-step completed">
+                <div class="journey-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+                <div class="journey-label">Placed</div>
+              </div>
+              
+              <div class="journey-step active">
+                <div class="journey-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+                <div class="journey-label">Confirmed</div>
+              </div>
+              
+              <div class="journey-step">
+                <div class="journey-icon"><svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg></div>
+                <div class="journey-label">Shipped</div>
+              </div>
+              
+              <div class="journey-step">
+                <div class="journey-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>
+                <div class="journey-label">Out for Delivery</div>
+              </div>
+              
+              <div class="journey-step">
+                <div class="journey-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+                <div class="journey-label">Delivered</div>
+              </div>
+            </div>
+            <div class="journey-footer">Stay updated with your order status</div>
+          </div>
+
+        </div>
+      </div>
+      </div> <!-- End tab-dashboard -->
+
+      <!-- Tab: Orders -->
+      <div id="tab-orders" class="tab-content" style="display:none;">
+        <div class="dashboard-header">
+          <h1 class="dashboard-title">My Orders</h1>
+        </div>
+        <div class="panel" style="text-align: center; padding: 5rem 2rem;">
+          <h2 style="font-family: 'Playfair Display', serif; color: var(--text-main); margin-bottom: 1rem;">Your Wardrobe Awaits</h2>
+          <p style="color: var(--text-muted); margin-bottom: 2rem;">You have not placed any orders yet.</p>
+          <button class="btn-gold" onclick="window.location.href='/all-collections.html'">Browse Collection</button>
+        </div>
+      </div>
+
+      <!-- Tab: Wishlist -->
+      <div id="tab-wishlist" class="tab-content" style="display:none;">
+        <div class="dashboard-header">
+          <h1 class="dashboard-title">My Wishlist</h1>
+        </div>
+        <div class="panel" style="text-align: center; padding: 5rem 2rem;">
+          <h2 style="font-family: 'Playfair Display', serif; color: var(--text-main); margin-bottom: 1rem;">No Saved Items</h2>
+          <p style="color: var(--text-muted); margin-bottom: 2rem;">Items you save will appear here.</p>
+        </div>
+      </div>
+
+      <!-- Tab: Addresses -->
+      <div id="tab-addresses" class="tab-content" style="display:none;">
+        <div class="dashboard-header">
+          <h1 class="dashboard-title">My Addresses</h1>
+        </div>
+        <div class="panel">
+          <button class="btn-gold" style="margin-bottom: 2rem;">+ Add New Address</button>
+          <div style="border: 1px solid var(--border-color); padding: 1.5rem; border-radius: 8px;">
+            <h4 style="margin:0 0 10px 0; color:var(--text-main);">Default Shipping Address</h4>
+            <p style="color:var(--text-muted); font-size: 0.9rem; margin:0;">Please add an address to speed up your checkout process.</p>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const userName = localStorage.getItem('userName');
+      if (!userName) {
+        window.location.href = '/signup.html';
+        return;
+      }
+      
+      // Update UI with user info
+      document.getElementById('user-name-display').textContent = userName;
+      document.getElementById('avatar-initial').textContent = userName.charAt(0).toUpperCase();
+    });
+
+    function logout() {
+      localStorage.clear();
+      window.location.href = '/';
+    }
+
+    function switchTab(tabId, el) {
+      // Hide all tabs
+      document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.style.display = 'none';
+      });
+      // Show target tab
+      const target = document.getElementById('tab-' + tabId);
+      if (target) target.style.display = 'block';
+
+      // Update active nav link class
+      if (el) {
+        document.querySelectorAll('.sidebar-link').forEach(link => {
+          link.classList.remove('active');
+        });
+        el.classList.add('active');
+      }
+    }
+  </script>
+</body>
+</html>

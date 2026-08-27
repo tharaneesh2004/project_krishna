@@ -57,7 +57,7 @@ const Collections = () => {
                 </div>
                 <h3>{item.title}</h3>
                 <p>{item.description}</p>
-                <a href="#" className="collection-link">EXPLORE &gt;</a>
+                <a href="/collections/all" className="collection-link">EXPLORE &gt;</a>
               </div>
             </div>
           ))}

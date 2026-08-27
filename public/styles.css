@@ -228,6 +228,11 @@ img {
   margin-top: 2px;
 }
 
+.nav-left {
+  display: flex;
+  align-items: center;
+}
+
 .nav-right {
   display: flex;
   align-items: center;
@@ -530,6 +535,70 @@ img {
 }
 
 /* ===================================
+   EXPLORE MORE BUTTON
+   =================================== */
+
+.explore-more-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 4rem;
+  width: 100%;
+}
+
+.btn-premium-explore {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  padding: 16px 40px;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border-radius: 4px;
+  box-shadow: 0 10px 30px rgba(184, 147, 90, 0.25);
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn-premium-explore::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--gold-dark) 0%, #7a5a30 100%);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.btn-premium-explore:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 35px rgba(184, 147, 90, 0.4);
+  color: var(--white);
+}
+
+.btn-premium-explore:hover::before {
+  opacity: 1;
+}
+
+.btn-premium-explore svg {
+  transition: transform 0.4s ease;
+}
+
+.btn-premium-explore:hover svg {
+  transform: translateX(5px);
+}
+
+/* ===================================
    FEATURES SECTION
    =================================== */
 
@@ -648,6 +717,7 @@ img {
   letter-spacing: 6px;
   background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 50%, #b8935a 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 0.5rem;
   opacity: 0.95;
@@ -1177,7 +1247,958 @@ img {
     max-width: 100%;
   }
 
+
   .contact-wrapper {
     padding: 1.5rem;
   }
+}
+
+/* ===================================
+   SAREES / NEW ARRIVALS SECTION
+   =================================== */
+.sarees-section {
+  padding: 6rem 0;
+  background-color: var(--cream);
+}
+
+.sarees-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2.5rem;
+}
+
+.sarees-loading {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 4rem 2rem;
+  color: var(--text-light);
+  font-family: var(--font-body);
+}
+
+/* ----- SAREE CARD ----- */
+.saree-card {
+  background: var(--white);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border-light);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+.saree-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+}
+
+/* --- Card Image --- */
+.saree-card-image {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background-color: #f5f5f5;
+}
+
+.saree-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.3s ease, transform 0.4s ease;
+}
+
+.saree-card:hover .saree-card-image img {
+  transform: scale(1.03);
+}
+
+.saree-discount-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background-color: var(--maroon);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+/* --- Color Variants --- */
+.saree-color-variants {
+  display: flex;
+  gap: 8px;
+  padding: 12px 16px;
+  background: #faf9f7;
+  border-bottom: 1px solid var(--border-light);
+  overflow-x: auto;
+}
+
+.variant-thumb {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.variant-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.variant-thumb:hover {
+  border-color: var(--gold);
+  transform: scale(1.1);
+}
+
+.variant-thumb.active {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 2px rgba(184, 147, 90, 0.3);
+}
+
+.variant-tooltip {
+  display: none;
+  position: absolute;
+  bottom: -26px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--text-dark);
+  color: var(--white);
+  font-size: 0.65rem;
+  padding: 3px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  z-index: 10;
+}
+
+.variant-thumb:hover .variant-tooltip {
+  display: block;
+}
+
+/* --- Card Details --- */
+.saree-card-details {
+  padding: 1.25rem 1.5rem 1.5rem;
+}
+
+.saree-card-name {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--text-dark);
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.saree-card-attrs {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.saree-attr {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+}
+
+.attr-icon {
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.attr-label {
+  color: var(--text-light);
+  min-width: 70px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+.attr-value {
+  color: var(--text-dark);
+  font-weight: 400;
+}
+
+/* --- Card Price --- */
+.saree-card-price {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.saree-price-final {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--gold-dark);
+}
+
+.saree-price-original {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  text-decoration: line-through;
+}
+
+/* ----- RESPONSIVE ----- */
+@media (max-width: 768px) {
+  .sarees-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .saree-card-details {
+    padding: 1rem;
+  }
+
+  .saree-card-name {
+    font-size: 1rem;
+  }
+
+  .saree-attr {
+    font-size: 0.75rem;
+  }
+
+  .attr-label {
+    min-width: 55px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sarees-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+/* Slider Navigation */
+.saree-card-image { position: relative; }
+.image-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.7);
+  color: #2d2d2d;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease, background 0.3s;
+  z-index: 2;
+}
+.saree-card-image:hover .image-nav { opacity: 1; }
+.image-nav:hover { background: #fff; }
+.image-nav.prev { left: 10px; }
+.image-nav.next { right: 10px; }
+
+/* ===================================
+   SAREE CARD ACTIONS (BUTTONS)
+   =================================== */
+
+.saree-card-actions {
+  display: flex;
+  gap: 0.8rem;
+  margin-top: 1.5rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--border-light);
+}
+
+.btn-saree-action {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 12px 0;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn-add-cart {
+  background: transparent;
+  color: var(--gold-dark);
+  border: 1px solid var(--gold);
+}
+
+.btn-add-cart:hover {
+  background: var(--gold);
+  color: var(--white);
+  box-shadow: 0 4px 15px rgba(184, 147, 90, 0.2);
+}
+
+.btn-buy-now {
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+  color: var(--white);
+  border: 1px solid transparent;
+  box-shadow: 0 4px 15px rgba(184, 147, 90, 0.2);
+}
+
+.btn-buy-now::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--gold-dark) 0%, #7a5a30 100%);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.btn-buy-now:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(184, 147, 90, 0.35);
+  color: var(--white);
+}
+
+.btn-buy-now:hover::before {
+  opacity: 1;
+}
+
+.btn-add-cart svg {
+  transition: transform 0.4s ease;
+}
+
+.btn-add-cart:hover svg {
+  transform: scale(1.1);
+}
+
+/* ===================================
+   COLLECTIONS PAGE (FILTERS)
+   =================================== */
+.filters-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 1.2rem;
+  border-radius: 6px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+  border: 1px solid #eee;
+  margin-bottom: 2.5rem;
+}
+
+.filters-left {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.filter-select {
+  padding: 10px 30px 10px 15px;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: #555;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: white;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 14px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.filter-select:hover {
+  border-color: var(--gold);
+}
+
+.filters-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .filters-container {
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: stretch;
+  }
+}
+
+/* WISHLIST HEART */
+.saree-wishlist {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: white;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  transition: all 0.2s ease;
+  z-index: 5;
+  color: #888;
+}
+
+.saree-wishlist:hover {
+  color: #C41E3A;
+}
+
+.saree-wishlist.active {
+  color: #C41E3A;
+  fill: #C41E3A;
+}
+
+.saree-wishlist.active svg {
+  fill: #C41E3A;
+}
+
+/* DISCOUNT BADGE */
+.saree-discount-badge {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: #4a131b;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 3px;
+  letter-spacing: 1px;
+  z-index: 5;
+}
+
+/* ===================================
+   SIGNUP PAGE
+   =================================== */
+.signup-page {
+  background-color: #FDFBF7; /* warm ivory/off-white */
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Navbar Dark */
+.signup-navbar {
+  position: relative; /* Override the base .navbar's fixed positioning */
+  background-color: #2c2117; /* deep espresso brown */
+  z-index: 100;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  padding: 0.5rem 0;
+}
+
+.signup-navbar .nav-link,
+.signup-navbar .nav-icon {
+  color: #FDFBF7;
+}
+
+.signup-navbar .nav-link:hover {
+  color: #b8935a;
+}
+
+/* Layout */
+.signup-layout {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  max-width: 1680px;
+  margin: 0 auto;
+}
+
+/* Left Section */
+.signup-left {
+  width: 30%;
+  display: flex;
+  align-items: center;
+  padding: 4rem 4rem 4rem 6rem;
+}
+
+.signup-brand-msg {
+  max-width: 400px;
+}
+
+.signup-brand-icon {
+  margin-bottom: 1.5rem;
+}
+
+.signup-brand-msg h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3.5rem;
+  font-weight: 500;
+  color: #2c2117;
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+}
+
+.signup-brand-msg .tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  font-style: italic;
+  color: #b8935a;
+  line-height: 1.2;
+  margin-bottom: 2.5rem;
+}
+
+.signup-divider {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 2.5rem;
+}
+
+.signup-divider span {
+  display: block;
+  width: 60px;
+  height: 1px;
+  background-color: #d4b978;
+}
+
+.signup-benefits {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.signup-benefits li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: 'Inter', sans-serif;
+  color: #4a4a4a;
+  font-size: 1rem;
+}
+
+.benefit-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid #b8935a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Center Section */
+.signup-center {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.signup-card {
+  background: #FFFFFF;
+  width: 100%;
+  max-width: 460px;
+  border-radius: 12px;
+  padding: 3rem 2.5rem;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.04);
+}
+
+.signup-card-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.signup-card-header h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.5rem;
+  color: #2c2117;
+  margin-bottom: 0.5rem;
+}
+
+.signup-card-header p {
+  font-family: 'Inter', sans-serif;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.signup-form .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.signup-form label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 14px;
+  color: #999;
+}
+
+.input-icon-right {
+  position: absolute;
+  right: 14px;
+  color: #999;
+  cursor: pointer;
+}
+
+.signup-form input {
+  width: 100%;
+  padding: 12px 14px 12px 42px;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  color: #333;
+  outline: none;
+  transition: border-color 0.2s;
+  height: 44px;
+}
+
+.signup-form input:focus {
+  border-color: #b8935a;
+}
+
+.signup-form input::placeholder {
+  color: #aaa;
+}
+
+.form-terms {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0.5rem 0;
+}
+
+.form-terms input[type="checkbox"] {
+  accent-color: #b8935a;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+}
+
+.form-terms label {
+  font-size: 0.8rem;
+  color: #666;
+  font-weight: 400;
+}
+
+.form-terms span {
+  color: #b8935a;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.btn-signup-submit {
+  background-color: #b8935a;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 6px;
+  padding: 14px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.btn-signup-submit:hover {
+  background-color: #9c7b46;
+}
+
+.signup-or {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin: 0.5rem 0;
+}
+
+.signup-or span {
+  flex: 1;
+  height: 1px;
+  background-color: #eee;
+}
+
+.signup-or p {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.social-logins {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn-social {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 10px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #444;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-social:hover {
+  background: #f9f9f9;
+}
+
+.btn-social img,
+.btn-social svg {
+  width: 18px;
+  height: 18px;
+}
+
+.signup-footer {
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 1rem;
+}
+
+.signup-footer a {
+  color: #b8935a;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+/* Right Section */
+.signup-right {
+  width: 35%;
+  min-width: 400px;
+  position: relative;
+  display: flex;
+}
+
+.signup-image-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.signup-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  mask-image: linear-gradient(to right, transparent, black 15%);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 15%);
+}
+
+.promo-card {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  background-color: #FDFBF7;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  text-align: center;
+  width: 240px;
+}
+
+.promo-icon {
+  width: 48px;
+  height: 48px;
+  background: #f4eee3;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 12px;
+}
+
+.promo-text p {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  color: #555;
+  margin: 0;
+}
+
+.promo-text h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.2rem;
+  color: #2c2117;
+  margin: 5px 0;
+  line-height: 1;
+}
+
+.promo-line {
+  width: 40px;
+  height: 2px;
+  background-color: #b8935a;
+  margin: 15px auto 0;
+}
+
+@media (max-width: 1200px) {
+  .signup-left {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .signup-layout {
+    flex-direction: column;
+  }
+  .signup-left, .signup-right {
+    width: 100%;
+  }
+  .signup-right {
+    height: 400px;
+  }
+}
+
+/* ===================================
+   BRANDED LOGIN MODAL (Public)
+   =================================== */
+.auth-brand-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.auth-brand-name {
+  font-family: 'Cinzel', 'Playfair Display', serif;
+  font-size: 2.2rem;
+  font-weight: 600;
+  letter-spacing: 6px;
+  margin-bottom: 0.2rem;
+  background: linear-gradient(135deg, #d4b978 0%, #b8935a 40%, #9c7b46 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.1;
+}
+
+.auth-brand-tagline {
+  font-family: 'Cinzel', 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #7a6a58;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.auth-brand-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.auth-brand-divider span {
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #b8935a, transparent);
+}
+
+.auth-branded-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.auth-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  text-align: left;
+}
+
+.auth-form-group label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.auth-form-group input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #e0e0e0;
+  background-color: #f6f8fa; /* Light blueish/gray similar to screenshot */
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  color: #333;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.auth-form-group input:focus {
+  border-color: #b8935a;
+  background-color: #ffffff;
+}
+
+.auth-remember {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-align: left;
+}
+
+.auth-remember input[type="checkbox"] {
+  accent-color: #b8935a;
+  width: 14px;
+  height: 14px;
+  margin: 0;
+}
+
+.auth-remember label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  color: #666;
+  cursor: pointer;
 }
