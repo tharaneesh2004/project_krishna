@@ -6,6 +6,7 @@ const Category = require('../models/Category');
 const User = require('../models/User');
 const ContactMessage = require('../models/ContactMessage');
 const Otp = require('../models/Otp');
+const Order = require('../models/Order');
 const { notifyNewSignup, notifyContactMessage, sendOtpEmail, sendWelcomeEmail } = require('../utils/emailNotifier');
 
 // ─── OTP FLOW ───────────────────────────────────────────────────────
@@ -126,6 +127,21 @@ router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
 
+    // Check for admin credentials first
+    const ADMIN_EMAIL = 'krishnaheritagecollection2026@gmail.com';
+    const ADMIN_EMAIL_TYPO = 'krishnaheritageccollection2026@gmail.com';
+    const ADMIN_PASSWORD = 'Krish@123';
+
+    if ((email === ADMIN_EMAIL || email === ADMIN_EMAIL_TYPO) && password === ADMIN_PASSWORD) {
+      const token = jwt.sign({ role: 'admin', email: ADMIN_EMAIL }, process.env.JWT_SECRET, { expiresIn: '1d' });
+      return res.json({
+        message: 'Admin login successful!',
+        token,
+        isAdmin: true,
+        user: { id: 'admin', name: 'Admin', email: ADMIN_EMAIL }
+      });
+    }
+
     const user = await User.findOne({ email });
     if (!user) {
       return res.status(401).json({ message: 'Invalid email or password.' });
@@ -141,10 +157,58 @@ router.post('/login', async (req, res) => {
     res.json({
       message: 'Login successful!',
       token,
+      isAdmin: false,
       user: { id: user._id, name: user.name, email: user.email }
     });
   } catch (err) {
     res.status(500).json({ message: err.message });
+  }
+});
+
+// ─── FORGOT PASSWORD ────────────────────────────────────────────────
+const crypto = require('crypto');
+const { sendPasswordResetEmail } = require('../utils/emailNotifier');
+
+router.post('/forgot-password', async (req, res) => {
+  try {
+    const { email } = req.body;
+    const user = await User.findOne({ email });
+    if (!user) return res.status(404).json({ message: 'User not found' });
+
+    // Generate token
+    const token = crypto.randomBytes(32).toString('hex');
+    user.resetPasswordToken = token;
+    user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+    await user.save();
+
+    // Send email
+    const resetUrl = `http://localhost:5173/reset-password?token=${token}`;
+    await sendPasswordResetEmail(email, resetUrl);
+
+    res.json({ message: 'Password reset link sent to your email.' });
+  } catch (err) {
+    res.status(500).json({ message: 'Error processing request.' });
+  }
+});
+
+router.post('/reset-password', async (req, res) => {
+  try {
+    const { token, newPassword } = req.body;
+    const user = await User.findOne({ 
+      resetPasswordToken: token,
+      resetPasswordExpires: { $gt: Date.now() }
+    });
+
+    if (!user) return res.status(400).json({ message: 'Password reset token is invalid or has expired.' });
+
+    user.password = newPassword;
+    user.resetPasswordToken = undefined;
+    user.resetPasswordExpires = undefined;
+    await user.save();
+
+    res.json({ message: 'Password successfully updated! You can now log in.' });
+  } catch (err) {
+    res.status(500).json({ message: 'Error updating password.' });
   }
 });
 
@@ -161,6 +225,33 @@ router.post('/contact', async (req, res) => {
     notifyContactMessage({ name, email, subject, message }).catch(err => console.error('Contact notification error:', err));
 
     res.status(201).json({ message: 'Your message has been sent successfully!' });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+// ─── TRACK ORDER ────────────────────────────────────────────────────
+router.post('/track-order', async (req, res) => {
+  try {
+    const { orderId, contact } = req.body;
+    
+    if (!orderId || !contact) {
+      return res.status(400).json({ message: 'Order ID and Contact information are required.' });
+    }
+
+    // Find the order by its custom string orderId, and optionally populate products
+    const order = await Order.findOne({ orderId }).populate('products.product');
+
+    if (!order) {
+      return res.status(404).json({ message: 'Order not found. Please check your Order ID.' });
+    }
+
+    // Verify contact info (either email or phone should match)
+    if (order.customer.email !== contact && order.customer.phone !== contact) {
+      return res.status(401).json({ message: 'Contact information does not match our records for this order.' });
+    }
+
+    res.json(order);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

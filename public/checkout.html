@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Checkout | Krishna Heritage Collection</title>
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+  <link rel="stylesheet" href="/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body { background-color: #fdfbf7; font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
+    
+    /* Header */
+    .checkout-header {
+      background-color: #2c2117;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 3rem;
+      border-bottom: 2px solid #b8935a;
+    }
+    .checkout-header a { color: #fff; text-decoration: none; font-size: 0.9rem; }
+    .checkout-header img { height: 60px; }
+    .checkout-header .secure-badge { display: flex; align-items: center; gap: 8px; color: #b8935a; font-weight: 500; }
+    
+    /* Progress Bar */
+    .progress-container {
+      max-width: 1200px;
+      margin: 3rem auto;
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+    }
+    .progress-step {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: #888;
+      background: #fdfbf7;
+      z-index: 2;
+      padding: 0 10px;
+    }
+    .progress-step.active { color: #2c2117; font-weight: 600; }
+    .step-circle {
+      width: 30px; height: 30px; border-radius: 50%;
+      background: #eae5d9; color: #666;
+      display: flex; align-items: center; justify-content: center; font-weight: bold;
+    }
+    .progress-step.active .step-circle { background: #b8935a; color: #fff; }
+    .progress-line {
+      position: absolute; top: 15px; left: 0; right: 0; height: 2px;
+      background: #eae5d9; z-index: 1;
+    }
+
+    /* Layout */
+    .checkout-main {
+      max-width: 1200px;
+      margin: 0 auto 4rem;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 3rem;
+    }
+
+    /* Left Column (Forms) */
+    .form-section {
+      background: #fff;
+      padding: 2.5rem;
+      border-radius: 12px;
+      border: 1px solid #eae5d9;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    }
+    .form-section h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #2c2117;
+    }
+    .form-row { display: flex; gap: 1.5rem; margin-bottom: 1.5rem; }
+    .form-group { flex: 1; }
+    .form-group label { display: block; font-weight: 500; margin-bottom: 0.5rem; font-size: 0.9rem; color: #444; }
+    .form-group label span { color: red; }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; padding: 0.8rem; border: 1px solid #dcd7ce; border-radius: 6px;
+      font-family: 'Inter', sans-serif; box-sizing: border-box; background: #faf9f6;
+    }
+    .form-group input:focus { outline: none; border-color: #b8935a; }
+    
+    .checkbox-group { display: flex; align-items: center; gap: 10px; margin: 1.5rem 0; font-size: 0.9rem; }
+    
+    .btn-continue {
+      width: 100%; padding: 1.2rem; background: #b8935a; color: #fff;
+      border: none; border-radius: 6px; font-family: 'Inter', sans-serif;
+      font-weight: 600; font-size: 1.1rem; cursor: pointer; margin-top: 1rem;
+      transition: background 0.3s;
+    }
+    .btn-continue:hover { background: #9a7846; }
+
+    /* Right Column (Summary) */
+    .summary-section {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      border: 1px solid #eae5d9;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+      height: fit-content;
+    }
+    .summary-section h3 {
+      font-family: 'Cinzel', serif; font-size: 1.3rem; margin-top: 0;
+      border-bottom: 1px solid #eae5d9; padding-bottom: 1rem;
+      display: flex; justify-content: space-between;
+    }
+    .summary-item {
+      display: flex; gap: 1rem; margin: 1.5rem 0;
+    }
+    .summary-item img {
+      width: 80px; height: 100px; object-fit: cover; border-radius: 6px;
+    }
+    .summary-details h4 { margin: 0 0 0.5rem; font-size: 1rem; color: #2c2117; }
+    .summary-details p { margin: 0; color: #666; font-size: 0.9rem; }
+    .summary-price { font-weight: 600; margin-top: auto; display: block; }
+    
+    .summary-totals {
+      border-top: 1px solid #eae5d9;
+      padding-top: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .totals-row {
+      display: flex; justify-content: space-between; margin-bottom: 0.8rem;
+      color: #666; font-size: 0.95rem;
+    }
+    .totals-row.grand-total {
+      background: #fdfbf7; padding: 1rem; border-radius: 6px;
+      font-size: 1.3rem; font-weight: 600; color: #2c2117; margin-top: 1rem;
+    }
+    .free-text { color: #2E8B57; font-weight: 600; }
+    
+    /* Trust Badges */
+    .trust-badges { margin-top: 2rem; }
+    .trust-card {
+      background: #fff; border: 1px solid #eae5d9; border-radius: 8px;
+      padding: 1.5rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 1rem;
+    }
+    .payment-logos { display: flex; gap: 10px; margin-top: 10px; }
+    .payment-logos img { height: 25px; border: 1px solid #eee; border-radius: 4px; padding: 2px; }
+
+    /* Footer Strip */
+    .checkout-footer {
+      background: #fcf9f2; padding: 2rem 0; border-top: 1px solid #eae5d9;
+      display: flex; justify-content: space-around; font-size: 0.9rem; color: #444;
+    }
+    .footer-item { display: flex; align-items: center; gap: 10px; }
+
+    @keyframes glow {
+      0% { filter: drop-shadow(0 0 2px rgba(184, 147, 90, 0.4)); opacity: 0.9; }
+      100% { filter: drop-shadow(0 0 8px rgba(184, 147, 90, 0.8)) brightness(1.2); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="checkout-header">
+    <a href="/cart.html" style="font-weight: 500;">&lt; Back to Cart</a>
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <img src="/images/logo.png" alt="Krishna Heritage">
+      <div style="font-family: 'Cinzel', serif; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; animation: glow 2.5s infinite alternate;">
+        <span style="font-size: 1.6rem; font-weight: 700; color: #b8935a; letter-spacing: 1px; line-height: 1.1; text-shadow: 0 0 10px rgba(184, 147, 90, 0.4), 0 0 20px rgba(184, 147, 90, 0.2);">KRISHNA</span>
+        <span style="font-size: 0.9rem; font-weight: 400; color: #eae5d9; letter-spacing: 3px; text-shadow: 0 0 5px rgba(234, 229, 217, 0.3);">HERITAGE COLLECTION</span>
+      </div>
+    </div>
+    <div class="secure-badge">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+      100% Secure Checkout
+    </div>
+  </header>
+
+  <!-- Progress Bar -->
+  <div class="progress-container">
+    <div class="progress-line"></div>
+    <div class="progress-step active"><div class="step-circle">1</div> Shipping Details</div>
+    <div class="progress-step"><div class="step-circle">2</div> Delivery Method</div>
+    <div class="progress-step"><div class="step-circle">3</div> Payment</div>
+    <div class="progress-step"><div class="step-circle">4</div> Order Confirmation</div>
+  </div>
+
+  <div class="checkout-main">
+    <!-- Left Column -->
+    <div class="form-section">
+      <h3>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#b8935a" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        Shipping & Customer Details
+      </h3>
+      
+      <form id="checkout-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Full Name <span>*</span></label>
+            <input type="text" id="name" required placeholder="Jane Doe">
+          </div>
+          <div class="form-group">
+            <label>Email Address <span>*</span></label>
+            <input type="email" id="email" required placeholder="jane@example.com">
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label>Phone Number <span>*</span></label>
+            <input type="tel" id="phone" required placeholder="+91 9876543210">
+          </div>
+          <div class="form-group">
+            <label>Alternate Phone (Optional)</label>
+            <input type="tel" id="altPhone" placeholder="+91 9123456780">
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 1.5rem;">
+          <label>Shipping Address <span>*</span></label>
+          <textarea id="address" rows="3" required placeholder="123 Silk Road, Handloom City..."></textarea>
+        </div>
+
+        <div class="form-row" style="gap: 1rem;">
+          <div class="form-group">
+            <label>City <span>*</span></label>
+            <input type="text" id="city" required placeholder="Handloom City">
+          </div>
+          <div class="form-group">
+            <label>State <span>*</span></label>
+            <select id="state" required>
+              <option value="">Select State</option>
+              <option value="Kerala">Kerala</option>
+              <option value="Tamil Nadu">Tamil Nadu</option>
+              <option value="Karnataka">Karnataka</option>
+              <option value="Maharashtra">Maharashtra</option>
+              <option value="Delhi">Delhi</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Pincode <span>*</span></label>
+            <input type="text" id="pincode" required placeholder="680001">
+          </div>
+        </div>
+
+        <div class="checkbox-group">
+          <input type="checkbox" id="billingSame" checked>
+          <label for="billingSame">Use this address as my billing address</label>
+        </div>
+
+        <div class="form-group">
+          <label>Order Notes (Optional)</label>
+          <textarea id="notes" rows="2" placeholder="E.g. Deliver at specific time, gate code, etc."></textarea>
+        </div>
+
+        <button type="submit" class="btn-continue">CONTINUE TO DELIVERY &rarr;</button>
+      </form>
+    </div>
+
+    <!-- Right Column -->
+    <div>
+      <div class="summary-section">
+        <h3>
+          <span style="display:flex; align-items:center; gap:8px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#b8935a" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+            Order Summary
+          </span>
+          <a href="/cart.html" style="font-size: 0.9rem; color: #b8935a; font-family: 'Inter', sans-serif;">Edit Cart</a>
+        </h3>
+        
+        <div id="summary-items">
+          <!-- Dynamically injected -->
+          <div style="padding: 2rem; text-align: center;">Loading Order...</div>
+        </div>
+        
+        <div class="summary-totals">
+          <div class="totals-row">
+            <span>Subtotal</span>
+            <span id="summary-subtotal">₹0</span>
+          </div>
+          <div class="totals-row">
+            <span>Shipping Charges</span>
+            <span class="free-text">FREE</span>
+          </div>
+          <div class="totals-row">
+            <span>Discount</span>
+            <span class="free-text">- ₹0</span>
+          </div>
+          <div class="totals-row grand-total">
+            <span>Total</span>
+            <span id="summary-total">₹0</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="trust-badges">
+        <div class="trust-card">
+          <div style="flex: 1;">
+            <div style="font-weight: 600; margin-bottom: 5px;">We Accept</div>
+            <div class="payment-logos">
+              <span style="font-weight:bold; font-style:italic; color:#1a1f71;">VISA</span>
+              <span style="color:#eb001b; font-weight:bold;">MasterCard</span>
+              <span style="color:#f26e21; font-weight:bold;">RuPay</span>
+              <span style="color:#000; font-weight:bold;">UPI</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="trust-card">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#b8935a" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          <div>
+            <div style="font-weight: 600; font-size: 0.95rem;">Secure Payments</div>
+            <div style="font-size: 0.85rem; color: #666;">Your transactions are 100% safe and secure</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="checkout-footer">
+    <div class="footer-item">
+      <strong>FREE SHIPPING</strong> On all orders
+    </div>
+    <div class="footer-item">
+      <strong>COD AVAILABLE</strong> Cash on Delivery
+    </div>
+    <div class="footer-item">
+      <strong>EASY RETURNS</strong> 7 Days Return Policy
+    </div>
+    <div class="footer-item">
+      <strong>CUSTOMER SUPPORT</strong> +91 9876543210
+    </div>
+  </div>
+
+  <script src="/cart-logic.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const sessionId = getSessionId();
+      let isBuyNow = false;
+      let buyNowProduct = null;
+
+      // 1. Check for Buy Now Product in localStorage
+      const buyNowData = localStorage.getItem('buyNowProduct');
+      if (buyNowData) {
+        try {
+          buyNowProduct = JSON.parse(buyNowData);
+          isBuyNow = true;
+        } catch(e) { console.error('Error parsing buyNowProduct'); }
+      }
+
+      // 2. Render Order Summary
+      const renderSummary = (items, subtotal) => {
+        const container = document.getElementById('summary-items');
+        container.innerHTML = items.map(item => {
+          const img = item.image || item.product?.primaryImage || (item.product?.images?.[0]) || '/images/placeholder.jpg';
+          const name = item.name || item.product?.name;
+          const qty = item.quantity;
+          const price = item.price;
+          
+          return `
+            <div class="summary-item">
+              <img src="${img}" alt="${name}">
+              <div class="summary-details">
+                <h4>${name}</h4>
+                <p>Qty: ${qty}</p>
+                <span class="summary-price">₹${(price * qty).toLocaleString()}</span>
+              </div>
+            </div>
+          `;
+        }).join('');
+        
+        document.getElementById('summary-subtotal').innerText = `₹${subtotal.toLocaleString()}`;
+        document.getElementById('summary-total').innerText = `₹${subtotal.toLocaleString()}`;
+      };
+
+      // 3. Load Data based on Flow
+      if (isBuyNow && buyNowProduct) {
+        const subtotal = buyNowProduct.price * buyNowProduct.quantity;
+        renderSummary([buyNowProduct], subtotal);
+      } else {
+        if (!sessionId) {
+          window.location.href = '/cart.html';
+          return;
+        }
+        try {
+          const res = await fetch('/api/cart', { headers: { 'x-session-id': sessionId } });
+          const data = await res.json();
+          if (data.success && data.cart.items.length > 0) {
+            renderSummary(data.cart.items, data.cart.subtotal);
+          } else {
+            window.location.href = '/cart.html';
+          }
+        } catch (err) {
+          console.error(err);
+        }
+      }
+
+      // 4. Handle Checkout Form Submission (Proceeds directly to mock success for this layout)
+      document.getElementById('checkout-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const payload = {
+          customerName: document.getElementById('name').value,
+          customerEmail: document.getElementById('email').value,
+          customerPhone: document.getElementById('phone').value,
+          shippingAddress: {
+            address: document.getElementById('address').value,
+            city: document.getElementById('city').value,
+            state: document.getElementById('state').value,
+            pincode: document.getElementById('pincode').value
+          },
+          deliveryMethod: 'Standard',
+          paymentMethod: 'Online'
+        };
+
+        try {
+          let endpoint = '/api/checkout';
+          if (isBuyNow) {
+            endpoint = '/api/checkout/buynow';
+            payload.productId = buyNowProduct.productId;
+            payload.quantity = buyNowProduct.quantity;
+          }
+
+          const res = await fetch(endpoint, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'x-session-id': sessionId || 'guest'
+            },
+            body: JSON.stringify(payload)
+          });
+          
+          const data = await res.json();
+          
+          if (data.success) {
+            if (isBuyNow) {
+              localStorage.removeItem('buyNowProduct');
+            } else {
+              updateCartBadge(); // reset cart count
+            }
+            alert(`Order Placed Successfully!\n\nOrder ID: ${data.orderId}\nTotal Amount: ₹${data.totalAmount || document.getElementById('summary-total').innerText.replace('₹','')}`);
+            window.location.href = '/';
+          } else {
+            alert(data.message || 'Error processing checkout');
+          }
+        } catch (err) {
+          console.error(err);
+          alert('Server error during checkout.');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

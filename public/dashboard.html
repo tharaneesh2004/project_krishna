@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="icon" type="image/png" href="/favicon.png">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Krishna | My Dashboard</title>
@@ -271,38 +272,38 @@
           </div>
           <span class="sidebar-bubble">3</span>
         </a>
-        <a href="#" class="sidebar-link">
+        <a href="#" class="sidebar-link" onclick="switchTab('cart', this)">
           <div class="sidebar-link-left">
             <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
             Cart
           </div>
           <span class="sidebar-bubble">2</span>
         </a>
-        <a href="#" class="sidebar-link">
+        <a href="#" class="sidebar-link" onclick="switchTab('profile', this)">
           <div class="sidebar-link-left">
             <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
             Profile Details
           </div>
         </a>
-        <a href="#" class="sidebar-link">
+        <a href="#" class="sidebar-link" onclick="switchTab('payments', this)">
           <div class="sidebar-link-left">
             <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
             Payment Methods
           </div>
         </a>
-        <a href="#" class="sidebar-link">
+        <a href="#" class="sidebar-link" onclick="switchTab('offers', this)">
           <div class="sidebar-link-left">
             <svg viewBox="0 0 24 24"><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h6"></path><path d="M21.5 2.5a2.121 2.121 0 0 1 0 3L12 15l-4 1 1-4 9.5-9.5a2.121 2.121 0 0 1 3 0z"></path></svg>
             Offers & Coupons
           </div>
         </a>
-        <a href="#" class="sidebar-link">
+        <a href="#" class="sidebar-link" onclick="switchTab('settings', this)">
           <div class="sidebar-link-left">
             <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
             Settings
           </div>
         </a>
-        <a href="#" class="sidebar-link">
+        <a href="#" class="sidebar-link" onclick="switchTab('support', this)">
           <div class="sidebar-link-left">
             <svg viewBox="0 0 24 24"><path d="M15.05 5A5 5 0 0 1 19 8.95M15.05 1A9 9 0 0 1 23 8.94m-1 7.98v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
             Help & Support
@@ -539,6 +540,78 @@
           <div style="border: 1px solid var(--border-color); padding: 1.5rem; border-radius: 8px;">
             <h4 style="margin:0 0 10px 0; color:var(--text-main);">Default Shipping Address</h4>
             <p style="color:var(--text-muted); font-size: 0.9rem; margin:0;">Please add an address to speed up your checkout process.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab: Cart -->
+      <div id="tab-cart" class="tab-content" style="display:none;">
+        <div class="dashboard-header">
+          <h1 class="dashboard-title">My Cart</h1>
+        </div>
+        <div class="panel" style="text-align: center; padding: 5rem 2rem;">
+          <h2 style="font-family: 'Playfair Display', serif; color: var(--text-main); margin-bottom: 1rem;">Your Cart is Empty</h2>
+          <p style="color: var(--text-muted); margin-bottom: 2rem;">Looks like you haven't added anything to your cart yet.</p>
+          <button class="btn-gold" onclick="window.location.href='/all-collections.html'">Continue Shopping</button>
+        </div>
+      </div>
+
+      <!-- Tab: Profile Details -->
+      <div id="tab-profile" class="tab-content" style="display:none;">
+        <div class="dashboard-header">
+          <h1 class="dashboard-title">Profile Details</h1>
+        </div>
+        <div class="panel">
+          <div style="border: 1px solid var(--border-color); padding: 1.5rem; border-radius: 8px;">
+            <p style="color:var(--text-muted); font-size: 0.9rem; margin:0;">Profile details section is under construction.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab: Payment Methods -->
+      <div id="tab-payments" class="tab-content" style="display:none;">
+        <div class="dashboard-header">
+          <h1 class="dashboard-title">Payment Methods</h1>
+        </div>
+        <div class="panel">
+          <div style="border: 1px solid var(--border-color); padding: 1.5rem; border-radius: 8px;">
+            <p style="color:var(--text-muted); font-size: 0.9rem; margin:0;">Saved payment methods will appear here.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab: Offers & Coupons -->
+      <div id="tab-offers" class="tab-content" style="display:none;">
+        <div class="dashboard-header">
+          <h1 class="dashboard-title">Offers & Coupons</h1>
+        </div>
+        <div class="panel">
+          <div style="border: 1px solid var(--border-color); padding: 1.5rem; border-radius: 8px;">
+            <p style="color:var(--text-muted); font-size: 0.9rem; margin:0;">No active coupons available at the moment.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab: Settings -->
+      <div id="tab-settings" class="tab-content" style="display:none;">
+        <div class="dashboard-header">
+          <h1 class="dashboard-title">Settings</h1>
+        </div>
+        <div class="panel">
+          <div style="border: 1px solid var(--border-color); padding: 1.5rem; border-radius: 8px;">
+            <p style="color:var(--text-muted); font-size: 0.9rem; margin:0;">Account settings and preferences.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab: Help & Support -->
+      <div id="tab-support" class="tab-content" style="display:none;">
+        <div class="dashboard-header">
+          <h1 class="dashboard-title">Help & Support</h1>
+        </div>
+        <div class="panel">
+          <div style="border: 1px solid var(--border-color); padding: 1.5rem; border-radius: 8px;">
+            <p style="color:var(--text-muted); font-size: 0.9rem; margin:0;">Contact our support team for assistance.</p>
           </div>
         </div>
       </div>

@@ -1,0 +1,357 @@
+.track-order-page {
+  background-color: #FDFBF7; /* warm ivory/off-white */
+  min-height: calc(100vh - 80px); /* Adjust based on navbar height */
+  padding: 4rem 2rem;
+  font-family: 'Inter', sans-serif;
+  color: #333;
+}
+
+.track-header {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 3rem;
+}
+
+.track-header h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3rem;
+  color: #2c2117;
+  margin-bottom: 0.5rem;
+}
+
+.track-header p {
+  color: #666;
+  font-size: 1rem;
+}
+
+.track-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Form Section */
+.track-form {
+  background: #ffffff;
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+  margin-bottom: 3rem;
+  border: 1px solid rgba(184, 147, 90, 0.2);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: #2c2117;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-wrapper svg {
+  position: absolute;
+  left: 14px;
+  color: #b8935a;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 12px 14px 12px 42px;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: #333;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+}
+
+.input-wrapper input:focus {
+  border-color: #b8935a;
+  box-shadow: 0 0 0 3px rgba(184, 147, 90, 0.1);
+}
+
+.track-btn {
+  background-color: #b8935a;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 6px;
+  padding: 14px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.track-btn:hover {
+  background-color: #9c7b46;
+}
+
+.track-btn:disabled {
+  background-color: #d1b58a;
+  cursor: not-allowed;
+}
+
+.track-error {
+  color: #d32f2f;
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+/* Results Section */
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.order-summary-card, .timeline-card {
+  background: #ffffff;
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+  margin-bottom: 2rem;
+  border: 1px solid rgba(184, 147, 90, 0.2);
+}
+
+.order-summary-card h3, .timeline-card h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  color: #2c2117;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 1rem;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.summary-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.summary-item span {
+  font-size: 0.85rem;
+  color: #777;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.3rem;
+}
+
+.summary-item strong {
+  font-size: 1.1rem;
+  color: #2c2117;
+}
+
+.payment-status.paid { color: #2e7d32; }
+.payment-status.pending { color: #f57c00; }
+.payment-status.failed { color: #c62828; }
+
+.product-details-list h4, .shipping-info h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.1rem;
+  color: #2c2117;
+  margin-bottom: 1rem;
+}
+
+.product-row {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.product-row:last-child {
+  border-bottom: none;
+}
+
+.product-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #f9f9f9;
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.img-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #aaa;
+  font-size: 0.8rem;
+}
+
+.product-info h5 {
+  font-size: 1.1rem;
+  margin-bottom: 0.3rem;
+  color: #333;
+}
+
+.product-info p {
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.shipping-info {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #eee;
+}
+
+.shipping-info p {
+  color: #555;
+  margin-bottom: 0.3rem;
+}
+
+/* Timeline Design */
+.timeline {
+  position: relative;
+  padding-left: 20px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 31px;
+  top: 10px;
+  bottom: 30px;
+  width: 2px;
+  background: #eee;
+}
+
+.timeline-step {
+  position: relative;
+  display: flex;
+  gap: 20px;
+  margin-bottom: 2rem;
+}
+
+.timeline-step:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  flex-shrink: 0;
+}
+
+.timeline-icon .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ccc;
+}
+
+.timeline-step.completed .timeline-icon {
+  background: #b8935a;
+  border-color: #b8935a;
+}
+
+.timeline-step.current .timeline-icon {
+  border-color: #b8935a;
+  box-shadow: 0 0 0 4px rgba(184, 147, 90, 0.2);
+}
+
+.timeline-step.current .timeline-icon .dot {
+  background: #b8935a;
+}
+
+.timeline-content {
+  flex: 1;
+  padding-top: 2px;
+}
+
+.timeline-content h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.1rem;
+  color: #777;
+  margin-bottom: 0.3rem;
+}
+
+.timeline-step.completed .timeline-content h4,
+.timeline-step.current .timeline-content h4 {
+  color: #2c2117;
+  font-weight: 600;
+}
+
+.timeline-content p {
+  color: #666;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.current-badge {
+  display: inline-block;
+  background: rgba(184, 147, 90, 0.1);
+  color: #b8935a;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+  text-transform: uppercase;
+}
+
+.cancelled-state {
+  text-align: center;
+  padding: 2rem;
+  color: #d32f2f;
+}
+
+.cancelled-state h4 {
+  font-size: 1.5rem;
+  margin: 1rem 0 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .track-order-page {
+    padding: 2rem 1rem;
+  }
+  
+  .track-header h1 {
+    font-size: 2.2rem;
+  }
+  
+  .track-form, .order-summary-card, .timeline-card {
+    padding: 1.5rem;
+  }
+}

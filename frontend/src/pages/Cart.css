@@ -1,0 +1,150 @@
+.cart-container {
+  max-width: 1200px;
+  margin: 10rem auto 4rem;
+  padding: 0 2rem;
+  min-height: 50vh;
+}
+
+.cart-title {
+  font-family: 'Cinzel', serif;
+  text-align: center;
+  margin-bottom: 3rem;
+  font-size: 2.5rem;
+}
+
+.cart-container.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.empty-cart {
+  text-align: center;
+  padding: 4rem 0;
+}
+
+.empty-cart p {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.cart-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 3rem;
+}
+
+.cart-item {
+  display: grid;
+  grid-template-columns: 120px 2fr 1fr 1fr;
+  gap: 1.5rem;
+  align-items: center;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.cart-item-image {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.cart-item-name {
+  font-family: 'Cinzel', serif;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.cart-item-price {
+  color: #666;
+}
+
+.qty-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.qty-controls button {
+  background: #f4f4f4;
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.qty-controls button:hover {
+  background: #e0e0e0;
+}
+
+.remove-btn {
+  background: none;
+  border: none;
+  color: #d9534f;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.cart-item-total {
+  font-weight: 600;
+  text-align: right;
+  font-size: 1.1rem;
+}
+
+.cart-summary {
+  background: #fdfbf7;
+  padding: 2rem;
+  border-radius: 8px;
+  height: fit-content;
+}
+
+.cart-summary h3 {
+  font-family: 'Cinzel', serif;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  color: #666;
+}
+
+.summary-total {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e0d5c1;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.checkout-btn {
+  width: 100%;
+  margin-top: 2rem;
+  padding: 1rem;
+}
+
+@media (max-width: 768px) {
+  .cart-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .cart-item {
+    grid-template-columns: 80px 1fr;
+    grid-template-rows: auto auto;
+  }
+  
+  .cart-item-total {
+    text-align: left;
+    margin-top: 1rem;
+  }
+}

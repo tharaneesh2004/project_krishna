@@ -115,8 +115,8 @@ const Products = () => {
                     <td>
                       <div className="product-cell">
                         <div className="product-thumbnail">
-                          {product.primaryImage ? (
-                            <img src={product.primaryImage} alt={product.name} />
+                          {product.images && product.images.length > 0 ? (
+                            <img src={product.images[0]} alt={product.name} />
                           ) : (
                             <div className="placeholder-img">No Img</div>
                           )}

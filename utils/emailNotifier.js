@@ -210,9 +210,43 @@ async function sendWelcomeEmail(user) {
       text: `Welcome to the Heritage, ${user.name}!\n\nWe are thrilled to welcome you to the Krishna Heritage Collection family. Your journey into the world of timeless drapes and modern grace begins here.\n\nEnjoy 10% OFF your first order!\n\nExplore our collection at http://localhost:3000/all-collections.html`,
       html: wrapHtml('Welcome to Our World', body)
     });
-    console.log(`📧  Welcome Email sent to: ${user.email}`);
-  } catch (err) {
-    console.error('❌  Welcome Email failed to send:', err.message);
+    console.log(`✅ Welcome email successfully sent to ${user.email}`);
+  } catch (error) {
+    console.error(`❌ Error sending welcome email to ${user.email}:`, error);
+    throw error;
+  }
+}
+
+// ─── Send Password Reset Email ──────────────────────────────────────
+async function sendPasswordResetEmail(email, resetUrl) {
+  const t = getTransporter();
+  if (!t) return;
+
+  const subject = 'Reset Your Password - Krishna Heritage Collection';
+  const body = `
+    <h2 style="color: #b8935a; margin-top: 0;">Password Reset Request</h2>
+    <p>We received a request to reset your password for your Krishna Heritage Collection account.</p>
+    <p>Click the button below to choose a new password. This link will expire in 1 hour.</p>
+    
+    <div style="text-align: center; margin: 30px 0;">
+      <a href="${resetUrl}" style="background-color: #b8935a; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 4px; font-weight: bold; display: inline-block;">Reset Password</a>
+    </div>
+    
+    <p style="color: #666; font-size: 13px;">If you did not request a password reset, please ignore this email or contact support if you have concerns.</p>
+    <p style="color: #666; font-size: 13px;">For security reasons, this link will expire in 1 hour.</p>
+  `;
+
+  try {
+    await t.sendMail({
+      from: `"Krishna Heritage" <${process.env.SMTP_USER}>`,
+      to: email,
+      subject,
+      html: wrapHtml('Password Reset Request', body)
+    });
+    console.log(`✅ Password reset email sent to ${email}`);
+  } catch (error) {
+    console.error(`❌ Error sending password reset email to ${email}:`, error);
+    throw error;
   }
 }
 
@@ -222,5 +256,6 @@ module.exports = {
   notifyContactMessage,
   sendNotification,
   sendOtpEmail,
-  sendWelcomeEmail
+  sendWelcomeEmail,
+  sendPasswordResetEmail
 };

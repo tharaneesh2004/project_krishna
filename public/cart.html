@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Your Cart | Krishna Heritage Collection</title>
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    .cart-container { max-width: 800px; margin: 10rem auto 4rem; padding: 0 2rem; }
+    .cart-item { display: flex; align-items: center; border-bottom: 1px solid #eee; padding: 1rem 0; }
+    .cart-item img { width: 100px; height: 100px; object-fit: cover; margin-right: 1.5rem; }
+    .cart-item-info { flex-grow: 1; }
+    .cart-item-title { font-family: 'Cinzel', serif; font-size: 1.2rem; margin-bottom: 0.5rem; }
+    .cart-item-price { color: #b8935a; font-weight: 600; }
+    .cart-actions { display: flex; align-items: center; gap: 1rem; }
+    .qty-btn { background: #f4f4f4; border: none; padding: 0.5rem 1rem; cursor: pointer; }
+    .remove-btn { color: red; background: none; border: none; cursor: pointer; text-decoration: underline; }
+    .cart-summary { margin-top: 2rem; text-align: right; border-top: 2px solid #b8935a; padding-top: 1rem; }
+    .cart-subtotal { font-size: 1.5rem; margin-bottom: 1rem; }
+    .checkout-btn { display: inline-block; padding: 1rem 2rem; background: #b8935a; color: white; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; }
+  </style>
+</head>
+<body>
+  <!-- Simplified Navbar for Cart -->
+  <nav class="navbar scrolled">
+    <div class="nav-container">
+      <div class="nav-logo" style="margin: 0 auto;">
+        <a href="/"><img src="/images/logo.png" alt="Krishna Logo" style="height: 60px;"></a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="cart-container">
+    <h1 style="font-family: 'Cinzel', serif; text-align: center; margin-bottom: 2rem;">Your Cart</h1>
+    
+    <div id="cart-items">
+      <p style="text-align: center;">Loading your cart...</p>
+    </div>
+
+    <div class="cart-summary" id="cart-summary" style="display: none;">
+      <div class="cart-subtotal">Subtotal: <span id="subtotal-amount">₹0</span></div>
+      <a href="/checkout.html" class="checkout-btn">Proceed to Checkout</a>
+    </div>
+  </div>
+
+  <script src="/cart-logic.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const cartItemsContainer = document.getElementById('cart-items');
+      const cartSummary = document.getElementById('cart-summary');
+      const subtotalAmount = document.getElementById('subtotal-amount');
+
+      async function loadCartPage() {
+        const sessionId = getSessionId();
+        if (!sessionId) {
+          cartItemsContainer.innerHTML = '<p style="text-align: center;">Your cart is empty.</p>';
+          return;
+        }
+
+        try {
+          const res = await fetch('/api/cart', { headers: { 'x-session-id': sessionId } });
+          const data = await res.json();
+
+          if (data.success && data.cart.items.length > 0) {
+            renderCartItems(data.cart.items);
+            subtotalAmount.textContent = '₹' + data.cart.subtotal.toLocaleString();
+            cartSummary.style.display = 'block';
+          } else {
+            cartItemsContainer.innerHTML = '<p style="text-align: center;">Your cart is empty.</p>';
+            cartSummary.style.display = 'none';
+          }
+        } catch (err) {
+          console.error(err);
+          cartItemsContainer.innerHTML = '<p style="text-align: center;">Error loading cart.</p>';
+        }
+      }
+
+      function renderCartItems(items) {
+        cartItemsContainer.innerHTML = items.map(item => {
+          const product = item.product;
+          return `
+            <div class="cart-item" data-id="${product._id}">
+              <img src="${product.images[0] || '/images/placeholder.jpg'}" alt="${product.name}">
+              <div class="cart-item-info">
+                <div class="cart-item-title">${product.name}</div>
+                <div class="cart-item-price">₹${item.price.toLocaleString()}</div>
+              </div>
+              <div class="cart-actions">
+                <button class="qty-btn dec-qty">-</button>
+                <span class="qty">${item.quantity}</span>
+                <button class="qty-btn inc-qty">+</button>
+                <button class="remove-btn">Remove</button>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      // Handle cart actions
+      cartItemsContainer.addEventListener('click', async (e) => {
+        const itemEl = e.target.closest('.cart-item');
+        if (!itemEl) return;
+        const productId = itemEl.getAttribute('data-id');
+        let currentQty = parseInt(itemEl.querySelector('.qty').textContent);
+
+        if (e.target.classList.contains('inc-qty')) {
+          await updateQty(productId, currentQty + 1);
+        } else if (e.target.classList.contains('dec-qty')) {
+          await updateQty(productId, currentQty - 1);
+        } else if (e.target.classList.contains('remove-btn')) {
+          await removeItem(productId);
+        }
+      });
+
+      async function updateQty(productId, qty) {
+        if (qty <= 0) {
+          await removeItem(productId);
+          return;
+        }
+        await fetch('/api/cart/update', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'x-session-id': getSessionId() },
+          body: JSON.stringify({ productId, quantity: qty })
+        });
+        loadCartPage();
+        updateCartBadge();
+      }
+
+      async function removeItem(productId) {
+        await fetch('/api/cart/remove/' + productId, {
+          method: 'DELETE',
+          headers: { 'x-session-id': getSessionId() }
+        });
+        loadCartPage();
+        updateCartBadge();
+      }
+
+      loadCartPage();
+    });
+  </script>
+</body>
+</html>

@@ -1,17 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import { CartContext } from '../context/CartContext';
 import './AllCollections.css';
 
 const AllCollections = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { addToCart } = useContext(CartContext);
 
   useEffect(() => {
     // Fetch products from the backend API
     const fetchProducts = async () => {
       try {
-        const res = await fetch('http://localhost:5000/api/products'); // Adjust URL as needed
+        const res = await fetch('/api/products');
         if (res.ok) {
           const data = await res.json();
           setProducts(data);
@@ -118,6 +120,34 @@ const AllCollections = () => {
                     {product.type && (
                       <span className="ac-tag">{product.type}</span>
                     )}
+                  </div>
+                  
+                  <div className="ac-card-actions" style={{ display: 'flex', gap: '10px', marginTop: '15px' }}>
+                    <button 
+                      className="btn btn-gold" 
+                      style={{ flex: 1, padding: '8px', fontSize: '0.9rem' }}
+                      onClick={() => addToCart(product._id, 1)}
+                    >
+                      ADD TO CART
+                    </button>
+                    <button 
+                      className="btn" 
+                      style={{ flex: 1, padding: '8px', fontSize: '0.9rem', backgroundColor: '#2c2117', color: '#fff', border: 'none', cursor: 'pointer' }}
+                      onClick={() => {
+                        const buyNowProduct = {
+                          productId: product._id,
+                          name: product.name,
+                          image: product.primaryImage || (product.images && product.images.length > 0 ? product.images[0] : '/images/placeholder.jpg'),
+                          price: product.discountedPrice || product.originalPrice,
+                          discount: product.discountPercentage || 0,
+                          quantity: 1
+                        };
+                        localStorage.setItem('buyNowProduct', JSON.stringify(buyNowProduct));
+                        window.location.href = '/checkout';
+                      }}
+                    >
+                      BUY NOW
+                    </button>
                   </div>
                 </div>
               </div>

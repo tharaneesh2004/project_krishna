@@ -12,7 +12,7 @@ const Story = () => {
           <p className="story-lead">More than a saree,</p>
           <h2><em>it's an emotion.</em></h2>
           <p className="story-description">
-            At Vastraa, we celebrate the six yards of grace
+            At Krishna Heritage, we celebrate the six yards of grace
             that connect tradition with today.
           </p>
           <a href="#" className="btn btn-primary">Discover The Story</a>

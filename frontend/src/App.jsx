@@ -11,10 +11,15 @@ import Footer from './components/Footer';
 import AllCollections from './pages/AllCollections';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
+import TrackOrder from './pages/TrackOrder';
 import CustomerDashboard from './pages/CustomerDashboard';
+import Cart from './pages/Cart';
+import Checkout from './pages/Checkout';
+import OrderConfirmation from './pages/OrderConfirmation';
+import ForgotPassword from './pages/ForgotPassword';
+import ResetPassword from './pages/ResetPassword';
 
 // Admin Pages
-import AdminLogin from './admin/AdminLogin';
 import AdminLayout from './admin/AdminLayout';
 import Dashboard from './admin/Dashboard';
 import Products from './admin/Products';
@@ -46,9 +51,14 @@ function App() {
       <Route path="/collections/all" element={<AllCollections />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/track-order" element={<TrackOrder />} />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
+      <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="/dashboard" element={<CustomerDashboard />} />
+      <Route path="/cart" element={<Cart />} />
+      <Route path="/checkout" element={<Checkout />} />
+      <Route path="/order-confirmation/:orderId" element={<OrderConfirmation />} />
       
-      <Route path="/admin/login" element={<AdminLogin />} />
       <Route path="/admin" element={<AdminLayout />}>
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="products" element={<Products />} />

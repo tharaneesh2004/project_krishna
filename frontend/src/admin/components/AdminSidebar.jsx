@@ -41,7 +41,13 @@ const AdminSidebar = () => {
 
       <aside className={`admin-sidebar ${isMobileOpen ? 'open' : ''}`}>
         <div className="admin-sidebar-header">
-          <img src="/images/logo.png" alt="Krishna Heritage Collection" className="admin-sidebar-logo" />
+          <div style={{ display: 'flex', alignItems: 'center', gap: '15px', width: '100%', padding: '10px 5px' }}>
+            <img src="/images/logo.png" alt="Krishna Heritage" className="admin-sidebar-logo" style={{ margin: 0, width: '65px', height: '65px', objectFit: 'contain', filter: 'drop-shadow(0px 4px 6px rgba(0,0,0,0.1))' }} />
+            <div style={{ fontFamily: "'Cinzel', serif", display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'center', textShadow: '0px 2px 4px rgba(184, 147, 90, 0.2)' }}>
+              <span style={{ fontSize: '1.4rem', fontWeight: 700, color: '#c49a4a', letterSpacing: '1.5px', lineHeight: 1.1, background: 'linear-gradient(to right, #d4af37, #aa771c)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>KRISHNA</span>
+              <span style={{ fontSize: '0.7rem', fontWeight: 500, color: '#9a8c78', letterSpacing: '2.5px', marginTop: '2px' }}>HERITAGE COLLECTION</span>
+            </div>
+          </div>
         </div>
 
         <nav className="admin-sidebar-nav">
@@ -59,7 +65,7 @@ const AdminSidebar = () => {
         </nav>
 
         <div className="admin-sidebar-footer">
-          <a href="/" className="admin-nav-link" style={{color: '#b8935a', borderTop: '1px solid #e6e0d4', paddingTop: '15px', marginTop: '10px', marginBottom: '10px'}}>
+          <a href="http://localhost:3000/" className="admin-nav-link" style={{color: '#b8935a', borderTop: '1px solid #e6e0d4', paddingTop: '15px', marginTop: '10px', marginBottom: '10px'}}>
             <span className="admin-nav-icon">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
             </span>

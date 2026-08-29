@@ -1,143 +1,532 @@
-.signup-container {
-  min-height: calc(100vh - 120px);
-  background-color: var(--ivory);
+/* Signup.css - Luxury Redesign */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap');
+
+.signup-page {
+  background-color: #F8F1E5; /* Ivory */
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Layout */
+.signup-layout {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+}
+
+/* ──────────────────────────────────────────────────────────
+   LEFT SECTION (34%)
+   ────────────────────────────────────────────────────────── */
+.signup-left {
+  width: 34%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 1px solid rgba(184, 138, 69, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.left-content-wrapper {
+  padding: 6rem 4rem 2rem 5rem; /* Increased top padding to avoid navbar overlap */
+}
+
+.brand-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 4rem;
+}
+
+.brand-text h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #B88A45;
+  margin: 0;
+  line-height: 1;
+}
+
+.brand-text p {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  color: #33231C;
+  margin: 5px 0 0;
+}
+
+.promo-headline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3.5rem;
+  font-weight: 600;
+  color: #33231C;
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+}
+
+.promo-subheadline {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.6rem;
+  color: #B88A45;
+  line-height: 1.2;
+  margin-bottom: 2rem;
+}
+
+.decorative-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 2.5rem;
+  width: 150px;
+}
+
+.decorative-divider .line {
+  flex: 1;
+  height: 1px;
+  background-color: #B88A45;
+}
+
+.benefit-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.benefit-list li {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.icon-circle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid #B88A45;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 4rem 1rem;
 }
 
-.signup-box {
-  background-color: #fff;
+.benefit-list span {
+  font-family: 'Inter', sans-serif;
+  color: #33231C;
+  font-size: 1rem;
+  line-height: 1.4;
+  font-weight: 400;
+}
+
+.left-image-container {
+  width: 100%;
+  height: 250px; /* fixed height for bottom image */
+  margin-top: auto;
+}
+
+.left-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* ──────────────────────────────────────────────────────────
+   CENTER SECTION (40%)
+   ────────────────────────────────────────────────────────── */
+.signup-center {
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem 2rem; /* Reduced padding */
+  background: #F8F1E5; /* Keep consistent with page */
+}
+
+.signup-card {
+  background: #FFFFFF;
   width: 100%;
   max-width: 500px;
-  padding: 3rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-  border: 1px solid var(--beige);
+  border-radius: 16px;
+  padding: 2.5rem 2.5rem; /* Reduced padding to fit 100vh */
+  box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.signup-box h2 {
-  font-family: var(--font-serif);
-  color: var(--espresso);
-  font-size: 2rem;
-  text-align: center;
-  margin-bottom: 0.5rem;
+.card-top-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1.5rem;
+  width: 100px;
 }
 
-.signup-box .subtitle {
-  text-align: center;
-  color: var(--gold);
-  margin-bottom: 2rem;
-  font-family: var(--font-sans);
+.card-top-divider .line {
+  flex: 1;
+  height: 1px;
+  background-color: #B88A45;
 }
 
-.error-message {
-  background-color: #ffebee;
-  color: #c62828;
-  padding: 10px;
-  border-radius: 4px;
-  margin-bottom: 1rem;
+.card-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.4rem; /* Slightly smaller */
+  color: #5A0F1B; /* Deep burgundy */
+  margin: 0 0 0.2rem;
+  font-weight: 700;
+}
+
+.card-subtitle {
+  font-family: 'Inter', sans-serif;
+  color: #33231C;
   font-size: 0.9rem;
-  text-align: center;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+.signup-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* Reduced gap */
 }
 
 .form-group {
-  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem; /* Reduced gap */
 }
 
 .form-group label {
-  display: block;
-  margin-bottom: 0.5rem;
-  color: var(--espresso);
-  font-family: var(--font-sans);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
   font-weight: 500;
-  font-size: 0.9rem;
+  color: #33231C;
 }
 
-.form-group input {
-  width: 100%;
-  padding: 0.75rem 1rem;
-  border: 1px solid var(--beige);
-  border-radius: 4px;
-  font-family: var(--font-sans);
-  transition: all 0.3s ease;
-}
-
-.form-group input:focus {
-  outline: none;
-  border-color: var(--gold);
-}
-
-.form-group input:disabled {
-  background-color: #f5f5f5;
-  cursor: not-allowed;
-}
-
-.mobile-input-wrapper, .otp-input-wrapper {
+.input-wrapper {
+  position: relative;
   display: flex;
-  gap: 10px;
+  align-items: center;
 }
 
-.btn-send-otp, .btn-verify-otp {
-  background-color: var(--gold);
-  color: #fff;
-  border: none;
-  padding: 0 1rem;
-  border-radius: 4px;
+.field-icon {
+  position: absolute;
+  left: 14px;
+  color: #B88A45;
+}
+
+.eye-icon {
+  position: absolute;
+  right: 14px;
+  color: #B88A45;
   cursor: pointer;
-  font-family: var(--font-sans);
-  font-weight: 500;
-  white-space: nowrap;
-  transition: opacity 0.3s ease;
 }
 
-.btn-send-otp:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
-
-.btn-send-otp:hover:not(:disabled), .btn-verify-otp:hover {
-  opacity: 0.9;
-}
-
-.btn-signup {
+.signup-form input {
   width: 100%;
-  padding: 1rem;
-  background-color: var(--espresso);
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  font-family: var(--font-sans);
-  font-weight: 600;
-  font-size: 1rem;
+  padding: 12px 14px 12px 44px !important; /* Slightly reduced vertical padding */
+  border: 1px solid #D9D5CF;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  color: #33231C;
+  outline: none;
+  transition: border-color 0.2s;
+  background-color: #fafafa;
+  box-sizing: border-box;
+}
+
+.signup-form input:focus {
+  border-color: #B88A45;
+  background-color: #FFFFFF;
+}
+
+.phone-input .country-code {
+  position: absolute;
+  left: 42px;
+  color: #33231C;
+  font-size: 0.95rem;
+  font-family: 'Inter', sans-serif;
+}
+
+.phone-input input {
+  padding-left: 76px !important;
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0.5rem 0;
+}
+
+.checkbox-group input[type="checkbox"] {
+  accent-color: #5A0F1B;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+}
+
+.checkbox-group label {
+  font-size: 0.8rem;
+  color: #33231C;
+  font-family: 'Inter', sans-serif;
+}
+
+.highlight {
+  color: #B88A45;
+  font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-top: 1rem;
+  text-decoration: none;
 }
 
-.btn-signup:hover:not(:disabled) {
-  background-color: #3e2723;
+.submit-btn {
+  background-color: #5A0F1B;
+  color: #F8F1E5; /* Cream text */
+  border: none;
+  border-radius: 8px;
+  padding: 14px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  width: 100%;
+  margin-top: 0.2rem;
 }
 
-.btn-signup:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
+.submit-btn:hover {
+  background-color: #4a0c16;
+}
+
+.social-divider {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 1rem 0;
+}
+
+.social-divider .line {
+  flex: 1;
+  height: 1px;
+  background-color: #D9D5CF;
+}
+
+.social-divider .text {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  color: #777;
+}
+
+.social-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.social-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: white;
+  border: 1px solid #D9D5CF;
+  border-radius: 8px;
+  padding: 12px 10px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #33231C;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.social-btn:hover {
+  background: #f9f9f9;
 }
 
 .login-link {
   text-align: center;
-  margin-top: 1.5rem;
+  font-family: 'Inter', sans-serif;
   font-size: 0.9rem;
-  color: var(--espresso);
+  color: #33231C;
+  margin-top: 1rem;
 }
 
-.login-link a {
-  color: var(--gold);
-  text-decoration: none;
-  font-weight: 500;
+.login-link .highlight {
+  color: #5A0F1B;
+  font-weight: 600;
 }
 
-.login-link a:hover {
-  text-decoration: underline;
+/* ──────────────────────────────────────────────────────────
+   RIGHT SECTION (26%)
+   ────────────────────────────────────────────────────────── */
+.signup-right {
+  width: 26%;
+  position: relative;
+  padding-top: 5rem; /* Prevent navbar overlap on the image if needed, though image covers it */
+}
+
+.boutique-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* ──────────────────────────────────────────────────────────
+   FOOTER STRIP
+   ────────────────────────────────────────────────────────── */
+.signup-footer-strip {
+  background-color: #5A0F1B;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.signup-footer-strip .feature {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 3rem;
+  color: #F8F1E5;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  letter-spacing: 0.5px;
+}
+
+.signup-footer-strip .feature svg {
+  color: #B88A45;
+}
+
+.signup-footer-strip .divider {
+  width: 1px;
+  height: 30px;
+  background-color: rgba(248, 241, 229, 0.2);
+}
+
+/* ──────────────────────────────────────────────────────────
+   RESPONSIVE DESIGN
+   ────────────────────────────────────────────────────────── */
+@media (max-width: 1400px) {
+  .signup-left { padding: 3rem 2rem 1rem 3rem; width: 30%; }
+  .signup-center { width: 45%; }
+  .signup-right { width: 25%; }
+  .promo-headline { font-size: 3rem; }
+  .promo-subheadline { font-size: 1.4rem; }
+  .signup-footer-strip .feature { padding: 0 1.5rem; font-size: 1.1rem; }
+}
+
+@media (max-width: 1100px) {
+  .signup-layout {
+    flex-direction: column;
+  }
+  .signup-left, .signup-center, .signup-right {
+    width: 100%;
+    border-right: none;
+  }
+  .signup-left {
+    padding: 3rem;
+  }
+  .left-image-container {
+    margin-top: 2rem;
+  }
+  .signup-right {
+    height: 400px;
+  }
+  .signup-footer-strip {
+    height: auto;
+    flex-wrap: wrap;
+    padding: 2rem 0;
+    gap: 1.5rem;
+  }
+  .signup-footer-strip .divider {
+    display: none;
+  }
+  .signup-footer-strip .feature {
+    width: 45%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .signup-card {
+    padding: 2rem 1.5rem;
+  }
+  .social-buttons {
+    flex-direction: column;
+  }
+.signup-footer-strip .feature {
+  width: 100%;
+}
+}
+
+/* OTP Styling */
+.with-action {
+  position: relative;
+}
+
+.with-action input {
+  padding-right: 90px !important;
+}
+
+.action-btn {
+  position: absolute;
+  right: 6px;
+  top: 6px;
+  bottom: 6px;
+  background: #F8F1E5;
+  color: #B88A45;
+  border: 1px solid #B88A45;
+  border-radius: 6px;
+  padding: 0 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.action-btn:hover:not(:disabled) {
+  background: #B88A45;
+  color: #FFFFFF;
+}
+
+.action-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  border-color: #D9D5CF;
+  color: #999;
+}
+
+.verified-badge {
+  position: absolute;
+  right: 14px;
+  color: #2e7d32;
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+}
+
+.otp-msg {
+  font-size: 0.8rem;
+  margin-top: 2px;
+  font-family: 'Inter', sans-serif;
+}
+
+.otp-msg.success { color: #2e7d32; }
+.otp-msg.error { color: #d32f2f; }
+
+.otp-input {
+  margin-top: 8px;
 }

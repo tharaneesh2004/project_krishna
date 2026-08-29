@@ -7,7 +7,14 @@ const orderSchema = new mongoose.Schema({
     email: { type: String, required: true },
     phone: { type: String, required: true }
   },
-  shippingAddress: { type: String, required: true },
+  shippingAddress: {
+    address: { type: String, required: true },
+    city: { type: String, required: true },
+    state: { type: String, required: true },
+    pincode: { type: String, required: true }
+  },
+  deliveryMethod: { type: String, default: 'Standard' },
+  paymentMethod: { type: String, default: 'Online' },
   products: [{
     product: { type: mongoose.Schema.Types.ObjectId, ref: 'Product' },
     quantity: { type: Number, required: true },

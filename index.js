@@ -45,6 +45,8 @@ const adminOrders = require('./routes/adminOrders');
 const adminDashboard = require('./routes/adminDashboard');
 const adminCustomers = require('./routes/adminCustomers');
 const publicApi = require('./routes/publicApi');
+const cartRoute = require('./routes/cart');
+const checkoutRoute = require('./routes/checkout');
 
 app.use('/api/admin', adminAuth); // Login & verify don't need auth middleware
 app.use('/api/admin/products', authenticateAdmin, adminProducts);
@@ -53,6 +55,8 @@ app.use('/api/admin/orders', authenticateAdmin, adminOrders);
 app.use('/api/admin/dashboard', authenticateAdmin, adminDashboard);
 app.use('/api/admin/customers', authenticateAdmin, adminCustomers);
 app.use('/api', publicApi);
+app.use('/api/cart', cartRoute);
+app.use('/api/checkout', checkoutRoute);
 
 // Serve frontend React app assets
 app.use('/assets', express.static(path.join(__dirname, 'frontend/dist/assets')));

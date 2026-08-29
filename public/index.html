@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="icon" type="image/png" href="/favicon.png">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Krishna | Heritage Collection</title>
@@ -43,7 +44,7 @@
           <a href="#account" class="nav-icon" aria-label="Account">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
           </a>
-          <a href="#cart" class="nav-icon cart-icon" aria-label="Cart">
+          <a href="/cart.html" class="nav-icon cart-icon" aria-label="Cart">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
             <span class="cart-badge">0</span>
           </a>
@@ -385,7 +386,7 @@
         Join Krishna Heritage Collection to explore and purchase our timeless sarees.
       </p>
       <button class="btn btn-gold" style="width: 100%; margin-bottom: 10px;" onclick="window.location.href='/signup.html'">SIGN UP NOW</button>
-      <button class="btn btn-outline-gold" style="width: 100%; background: transparent; border: 1px solid #b8935a; color: #b8935a; padding: 12px; border-radius: 4px; font-weight: 500; cursor: pointer; transition: 0.3s;" onmouseover="this.style.background='#fdfbf7'" onmouseout="this.style.background='transparent'" onclick="closeModal('buyNowAlertModal'); openModal('accountModal')">LOGIN</button>
+      <button class="btn btn-outline-gold" style="width: 100%; background: transparent; border: 1px solid #b8935a; color: #b8935a; padding: 12px; border-radius: 4px; font-weight: 500; cursor: pointer; transition: 0.3s;" onmouseover="this.style.background='#fdfbf7'" onmouseout="this.style.background='transparent'" onclick="window.location.href='http://localhost:5173/login'">LOGIN</button>
     </div>
   </div>
 
@@ -438,8 +439,17 @@
 
     // Attach Modal events to Nav Icons
     document.querySelector('a[href="#search"]').addEventListener('click', (e) => { e.preventDefault(); openModal('searchModal'); });
-    document.querySelector('a[href="#account"]').addEventListener('click', (e) => { e.preventDefault(); openModal('accountModal'); });
-    document.querySelector('a[href="#cart"]').addEventListener('click', (e) => { e.preventDefault(); openModal('cartModal'); });
+    // Direct account icon to login/signup or dashboard
+    document.querySelector('a[href="#account"]').addEventListener('click', (e) => { 
+      e.preventDefault(); 
+      if (localStorage.getItem('adminToken')) {
+        window.location.href = 'http://localhost:5173/admin';
+      } else if (localStorage.getItem('userToken')) {
+        window.location.href = '/dashboard.html';
+      } else {
+        window.location.href = 'http://localhost:5173/login';
+      }
+    });
 
     // Password Visibility Toggle
     function togglePasswordVisibility(inputId, btn) {
@@ -479,6 +489,11 @@
         const data = await response.json();
 
         if (response.ok) {
+          if (data.isAdmin) {
+            localStorage.setItem('adminToken', data.token);
+            window.location.href = 'http://localhost:5173/admin';
+            return;
+          }
           // Set token for the customer
           localStorage.setItem('userToken', data.token);
           localStorage.setItem('userName', data.user.name);
@@ -515,6 +530,8 @@
         // Show only first 4 sarees on landing page
         const displayProducts = products.slice(0, 4);
 
+        const fragment = document.createDocumentFragment();
+
         displayProducts.forEach(product => {
           const card = document.createElement('div');
           card.className = 'saree-card';
@@ -535,7 +552,7 @@
                   <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                 </svg>
               </div>
-              <img src="${mainImgSrc}" alt="${product.name}" id="${cardId}-main" data-images='${JSON.stringify(allImages)}' data-current-index="0" />
+              <img src="${mainImgSrc}" alt="${product.name}" id="${cardId}-main" data-images='${JSON.stringify(allImages)}' data-current-index="0" loading="lazy" />
               ${allImages.length > 1 ? `
                 <div class="image-nav prev" onclick="prevImage(event, '${cardId}-main')">❮</div>
                 <div class="image-nav next" onclick="nextImage(event, '${cardId}-main')">❯</div>
@@ -545,11 +562,11 @@
             ${variants.length > 0 ? `
               <div class="saree-color-variants">
                 <div class="variant-thumb active" data-img="${mainImgSrc}" data-target="${cardId}-main">
-                  <img src="${mainImgSrc}" alt="Main" />
+                  <img src="${mainImgSrc}" alt="Main" loading="lazy" />
                 </div>
                 ${variants.map(v => `
                   <div class="variant-thumb" data-img="${v.imageUrl}" data-target="${cardId}-main">
-                    <img src="${v.imageUrl}" alt="${v.colorName}" />
+                    <img src="${v.imageUrl}" alt="${v.colorName}" loading="lazy" />
                     <span class="variant-tooltip">${v.colorName}</span>
                   </div>
                 `).join('')}
@@ -570,19 +587,21 @@
                 ${product.discountPercentage > 0 ? `<span class="saree-price-original">${formatPrice(product.originalPrice)}</span>` : ''}
               </div>
               <div class="saree-card-actions">
-                <button class="btn-saree-action btn-add-cart" onclick="event.stopPropagation(); openModal('cartModal')">
+                <button class="btn-saree-action btn-add-cart" onclick="event.stopPropagation(); window.addToCart('${product._id}', 1)">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
                   ADD TO CART
                 </button>
-                <button class="btn-saree-action btn-buy-now" onclick="event.stopPropagation(); handleBuyNow()">
+                <button class="btn-saree-action btn-buy-now" onclick="event.stopPropagation(); window.addToCart('${product._id}', 1).then(() => window.location.href='/cart.html')">
                   BUY NOW
                 </button>
               </div>
             </div>
           `;
 
-          grid.appendChild(card);
+          fragment.appendChild(card);
         });
+
+        grid.appendChild(fragment);
 
         // Color Variant Click Handler
         document.querySelectorAll('.variant-thumb').forEach(thumb => {
@@ -737,5 +756,6 @@
       }
     });
   </script>
+  <script src="/cart-logic.js"></script>
 </body>
 </html>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Footer.css';
 
 const Footer = () => {
@@ -7,7 +8,7 @@ const Footer = () => {
       <div className="container">
         <div className="footer-grid">
           <div className="footer-brand">
-            <h2>VASTRAA</h2>
+            <h2>KRISHNA</h2>
             <p className="footer-tagline">Timeless Drapes. Modern Grace.</p>
             <p className="footer-desc">Celebrating the art of Indian weaving, one saree at a time.</p>
           </div>
@@ -22,6 +23,7 @@ const Footer = () => {
             <h4>Customer Care</h4>
             <a href="#">Contact Us</a>
             <a href="#">Shipping Info</a>
+            <Link to="/track-order">Track Order</Link>
             <a href="#">Returns & Exchange</a>
             <a href="#">FAQs</a>
           </div>
@@ -33,8 +35,8 @@ const Footer = () => {
             <a href="#">WhatsApp</a>
           </div>
         </div>
-        <div className="footer-bottom">
-          <p>&copy; 2026 Vastraa. All rights reserved.</p>
+        <div className="footer-bottom-content">
+          <p>&copy; 2026 Krishna Heritage. All rights reserved.</p>
         </div>
       </div>
     </footer>
